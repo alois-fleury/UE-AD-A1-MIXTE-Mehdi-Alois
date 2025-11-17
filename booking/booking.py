@@ -1,24 +1,30 @@
-from ariadne import graphql_sync, make_executable_schema, load_schema_from_path, ObjectType, QueryType, MutationType
-from flask import Flask, request, jsonify
-
+from flask import Flask, request, jsonify, make_response
+from ariadne import make_executable_schema, graphql_sync, QueryType, load_schema_from_path
 import resolvers as r
 
-PORT = 3001
-HOST = '0.0.0.0'
 app = Flask(__name__)
 
-# todo create elements for Ariadne
+# Charger le schema GraphQL
+type_defs = load_schema_from_path("booking.graphql")
+query = QueryType()
+
+# Lier les queries aux résolveurs 
+query.set_field("all_bookings", r.resolve_all_bookings)
+query.set_field("booking_with_id", r.resolve_booking_with_id)
+
+schema = make_executable_schema(type_defs, query)
 
 # root message
 @app.route("/", methods=['GET'])
 def home():
-    return make_response("<h1 style='color:blue'>Welcome to the Movie service!</h1>",200)
+    return make_response("<h1 style='color:blue'>Welcome to the Booking service!</h1>",200)
 
-# graphql entry points
-@app.route('/graphql', methods=['POST'])
+# Endpoint GraphQL
+@app.route("/graphql", methods=["POST"])
 def graphql_server():
-    # todo to complete
+    data = request.get_json()
+    success, result = graphql_sync(schema, data, context_value=request, debug=True)
+    return jsonify(result)
 
 if __name__ == "__main__":
-    print("Server running in port %s"%(PORT))
-    app.run(host=HOST, port=PORT)
+    app.run(host="0.0.0.0", port=3001)

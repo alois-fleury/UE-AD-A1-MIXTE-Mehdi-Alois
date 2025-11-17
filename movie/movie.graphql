@@ -1,3 +1,21 @@
+type Actor {
+  id: String!
+  first_name: String!
+  last_name: String!
+  birthyear: String!
+  films: [Movie!]
+}
+
+type Movie {
+  title: String!
+  rating: Float!
+  director: String!
+  id: String!
+}
+
 type Query {
-    movie_with_id(_id: String!): Movie
+  all_movies: [Movie!]
+  movie_with_id(_id: String!): Movie
+  all_actors: [Actor!]
+  actor_with_id(_id: String!): Actor
 }
