@@ -34,7 +34,7 @@ def resolve_all_bookings(_, info):
 
 # RECUP LA RESERVATION AVEC L'ID
 def resolve_booking_with_id(_, info, _id):
-    for booking in booking_data:
+    for booking in booking_data:    
         if booking["userid"] == _id:
             new_dates = []
             for d in booking["dates"]:
@@ -48,3 +48,36 @@ def resolve_booking_with_id(_, info, _id):
             }
     return None
 
+#AJOUTER UNE RESERVATION
+def resolve_add_booking(_, info, userid, date, movies):
+    # Vérifier si L'user existe déjà
+    for booking in booking_data:
+        if booking["userid"] == userid:
+            # Ajouter une nouvelle date
+            booking["dates"].append({
+                "date": date,
+                "movies": movies
+            })
+            return resolve_booking_with_id(_, info, userid)
+
+    # Sinon on crée un nouvel utilisateur
+    new_booking = {
+        "userid": userid,
+        "dates": [
+            {
+                "date": date,
+                "movies": movies
+            }
+        ]
+    }
+    booking_data.append(new_booking)
+    
+    # ON RECUP LA RESERVATION AJOUTEE
+    return resolve_booking_with_id(_, info, id)
+
+def resolve_delete_booking(_, info, userid):
+    for b in booking_data:
+        if b["userid"] == userid:
+            booking_data.remove(b)
+            return True
+    return False
