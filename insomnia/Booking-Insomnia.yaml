@@ -1,0 +1,74 @@
+type: collection.insomnia.rest/5.0
+name: "GRAPHQL REQUESTS : BOOKING"
+meta:
+  id: wrk_08f1f36e2ba34014a8668aa600841f4f
+  created: 1762794508867
+  modified: 1763233779458
+  description: ""
+collection:
+  - url: http://172.20.10.2:3001/graphql
+    name: GET ALL BOOKINGS
+    meta:
+      id: req_31591e1cc2074ccb8c2a22963b7c0d14
+      created: 1759596630052
+      modified: 1763233779456
+      isPrivate: false
+      description: ""
+      sortKey: -1759596630052
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"query{\n\tall_bookings{\n\t\tuserid\n\t\tdates{\n\t\t\tdate\n\t\t\tmovies{\n\t\t\t\tid\n\t\t\t\ttitle\n\t\t\t\trating\n\t\t\t\tdirector\n\t\t\t}\t\t\n\t\t}\n\t}\n}"}'
+    headers:
+      - name: User-Agent
+        value: insomnia/11.6.1
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://172.20.10.2:3001/graphql
+    name: GET BOOKING WITH ID
+    meta:
+      id: req_299daa4076114a8ba908e1ab8d220b26
+      created: 1759596849376
+      modified: 1763233779454
+      isPrivate: false
+      description: ""
+      sortKey: -1759596849376
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"query{\n\tbooking_with_id(_id:
+        \"garret_heaton\"){\n\t\tuserid\n\t\tdates{\n\t\t\tdate\n\t\t\tmovies{\n\t\t\t\tid\n\t\t\t\ttitle\n\t\t\t\trating\n\t\t\t\tdirector\n\t\t\t}\n\t\t}\n\t}\n}"}'
+    headers:
+      - name: User-Agent
+        value: insomnia/11.6.1
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_0ed287d09d8b7f8dcdb65879fb2c2215ff4c866b
+    created: 1763233779480
+    modified: 1763233779480
+environments:
+  name: Base Environment
+  meta:
+    id: env_243fe5ad927348378b55f939b34a84e2
+    created: 1759596606288
+    modified: 1763233779453
+    isPrivate: false
