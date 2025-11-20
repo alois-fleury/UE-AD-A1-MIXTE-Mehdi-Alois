@@ -36,7 +36,22 @@ class ScheduleStub(object):
         """
         self.GetScheduleByDate = channel.unary_unary(
                 '/Schedule/GetScheduleByDate',
-                request_serializer=schedule__pb2.Day.SerializeToString,
+                request_serializer=schedule__pb2.Date.SerializeToString,
+                response_deserializer=schedule__pb2.ScheduleData.FromString,
+                _registered_method=True)
+        self.GetAllScheduleDays = channel.unary_unary(
+                '/Schedule/GetAllScheduleDays',
+                request_serializer=schedule__pb2.Empty.SerializeToString,
+                response_deserializer=schedule__pb2.Planning.FromString,
+                _registered_method=True)
+        self.AddScheduleDay = channel.unary_unary(
+                '/Schedule/AddScheduleDay',
+                request_serializer=schedule__pb2.ScheduleData.SerializeToString,
+                response_deserializer=schedule__pb2.ScheduleData.FromString,
+                _registered_method=True)
+        self.DeleteScheduleDay = channel.unary_unary(
+                '/Schedule/DeleteScheduleDay',
+                request_serializer=schedule__pb2.Date.SerializeToString,
                 response_deserializer=schedule__pb2.ScheduleData.FromString,
                 _registered_method=True)
 
@@ -50,12 +65,45 @@ class ScheduleServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetAllScheduleDays(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def AddScheduleDay(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteScheduleDay(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_ScheduleServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'GetScheduleByDate': grpc.unary_unary_rpc_method_handler(
                     servicer.GetScheduleByDate,
-                    request_deserializer=schedule__pb2.Day.FromString,
+                    request_deserializer=schedule__pb2.Date.FromString,
+                    response_serializer=schedule__pb2.ScheduleData.SerializeToString,
+            ),
+            'GetAllScheduleDays': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetAllScheduleDays,
+                    request_deserializer=schedule__pb2.Empty.FromString,
+                    response_serializer=schedule__pb2.Planning.SerializeToString,
+            ),
+            'AddScheduleDay': grpc.unary_unary_rpc_method_handler(
+                    servicer.AddScheduleDay,
+                    request_deserializer=schedule__pb2.ScheduleData.FromString,
+                    response_serializer=schedule__pb2.ScheduleData.SerializeToString,
+            ),
+            'DeleteScheduleDay': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteScheduleDay,
+                    request_deserializer=schedule__pb2.Date.FromString,
                     response_serializer=schedule__pb2.ScheduleData.SerializeToString,
             ),
     }
@@ -84,7 +132,88 @@ class Schedule(object):
             request,
             target,
             '/Schedule/GetScheduleByDate',
-            schedule__pb2.Day.SerializeToString,
+            schedule__pb2.Date.SerializeToString,
+            schedule__pb2.ScheduleData.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetAllScheduleDays(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/Schedule/GetAllScheduleDays',
+            schedule__pb2.Empty.SerializeToString,
+            schedule__pb2.Planning.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def AddScheduleDay(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/Schedule/AddScheduleDay',
+            schedule__pb2.ScheduleData.SerializeToString,
+            schedule__pb2.ScheduleData.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteScheduleDay(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/Schedule/DeleteScheduleDay',
+            schedule__pb2.Date.SerializeToString,
             schedule__pb2.ScheduleData.FromString,
             options,
             channel_credentials,

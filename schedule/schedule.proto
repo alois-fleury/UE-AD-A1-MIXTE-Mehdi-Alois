@@ -1,14 +1,23 @@
 syntax = "proto3";
 
 service Schedule {
-    rpc GetScheduleByDate(Day) returns (ScheduleData) {}
+    rpc GetScheduleByDate(Date) returns (ScheduleData) {}
+    rpc GetAllScheduleDays(Empty) returns (Planning) {}
+    rpc AddScheduleDay(ScheduleData) returns (ScheduleData) {}
+    rpc DeleteScheduleDay(Date) returns (ScheduleData) {}
 }
 
-message Day {
+message Date {
     string date = 1;
+}
+
+message Planning {
+    repeated ScheduleData planning = 1;
 }
 
 message ScheduleData {
     string date = 1;
     repeated string movies = 2;
 }
+
+message Empty {}

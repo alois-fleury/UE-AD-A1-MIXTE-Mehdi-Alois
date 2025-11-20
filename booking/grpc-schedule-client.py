@@ -10,11 +10,33 @@ def run():
         stub = schedule_pb2_grpc.ScheduleStub(channel)
 
         print("-------------- GetScheduleByDate --------------")
-        scheduleday = schedule_pb2.Day(date="20151130")
-        schedule = stub.GetScheduleByDate(scheduleday)
-        print(schedule)
-        print("en JSON :")
-        print(MessageToJson(schedule))
+        scheduleday = schedule_pb2.Date(date="20151130")
+        scheduleByDate = stub.GetScheduleByDate(scheduleday)
+        print(MessageToJson(scheduleByDate))
+
+        print("-------------- GetAllScheduleDays --------------")
+        alldays = stub.GetAllScheduleDays(schedule_pb2.Empty())
+        print(MessageToJson(alldays))
+
+        print("-------------- AddScheduleDay --------------")
+        try: 
+            new_day = schedule_pb2.ScheduleData(
+                date="20251121",
+                movies=["Movie 1", "Movie 2", "Movie 3"]
+            )
+            added_day = stub.AddScheduleDay(new_day)
+            print(MessageToJson(added_day))
+        except grpc.RpcError as e:
+            print(f"Erreur gRPC : {e.code()} - {e.details()}")
+
+
+        print("-------------- DeleteScheduleDay --------------")
+        try:
+            dateDayToDelete = schedule_pb2.Date(date="20251121")
+            deleted_day = stub.DeleteScheduleDay(dateDayToDelete)
+            print(MessageToJson(deleted_day))
+        except grpc.RpcError as e:
+            print(f"Erreur gRPC : {e.code()} - {e.details()}")
 
     channel.close()
 
