@@ -4,12 +4,14 @@ from graphql import GraphQLError
 from grpcScheduleClient import get_schedule_by_date
 import os
 import sys
+from dotenv import load_dotenv
 
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 if parent_dir not in sys.path:
     sys.path.append(parent_dir)
 
 from checkAdmin import checkAdmin
+load_dotenv()
 
 # CREATION DU CHEMIN
 BASE_DIR = os.path.join(os.path.dirname(__file__), "data")

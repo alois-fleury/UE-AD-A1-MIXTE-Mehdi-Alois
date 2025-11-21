@@ -4,10 +4,14 @@ import json
 from werkzeug.exceptions import NotFound
 import os
 import sys
+from dotenv import load_dotenv
 
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 if parent_dir not in sys.path:
     sys.path.append(parent_dir)
+
+load_dotenv()
+
 app = Flask(__name__)
 
 from checkAdmin import checkAdmin

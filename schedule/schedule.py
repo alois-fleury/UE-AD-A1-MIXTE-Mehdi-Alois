@@ -7,15 +7,17 @@ import json
 import os 
 import requests
 import sys 
+from dotenv import load_dotenv
 
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 if parent_dir not in sys.path:
     sys.path.append(parent_dir)
 
 from checkAdmin import checkAdmin
+load_dotenv()
 
-MOVIE_SERVICE_URL="http://127.0.0.1:3200/graphql"
-BOOKING_SERVICE_URL="http://127.0.0.1:3201/graphql"
+MOVIE_SERVICE_URL=os.getenv("MOVIE_SERVICE_URL") + "/graphql"
+BOOKING_SERVICE_URL=os.getenv("BOOKING_SERVICE_URL") + "/graphql"
 
 PORT = 3002
 
