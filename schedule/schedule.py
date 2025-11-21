@@ -8,6 +8,14 @@ import os
 import requests
 import sys 
 from dotenv import load_dotenv
+import logging
+
+grpc_logger = logging.getLogger('grpc_server')
+grpc_logger.setLevel(logging.DEBUG)
+handler = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('[%(asctime)s][gRPC] %(levelname)s: %(message)s')
+handler.setFormatter(formatter)
+grpc_logger.addHandler(handler)
 
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 if parent_dir not in sys.path:
@@ -19,16 +27,18 @@ load_dotenv()
 MOVIE_SERVICE_URL=os.getenv("MOVIE_SERVICE_URL") + "/graphql"
 BOOKING_SERVICE_URL=os.getenv("BOOKING_SERVICE_URL") + "/graphql"
 
-PORT = 3002
+PORT = 3202
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__)) 
 DB_PATH = os.path.join(BASE_DIR, "data", "times.json")
 
+from db import get_schedule_db
+
 class ScheduleServicer(schedule_pb2_grpc.ScheduleServicer):
 
     def __init__(self):
-        with open(DB_PATH, "r") as jsf:
-            self.db = json.load(jsf)["schedule"]
+        self.db_manager = get_schedule_db()
+        self.db = self.db_manager.load()
 
     def _extract_uid(self, context):
         for key, value in context.invocation_metadata() or []:
@@ -37,27 +47,30 @@ class ScheduleServicer(schedule_pb2_grpc.ScheduleServicer):
         return None
     
     def write(self, schedule):
-        with open(DB_PATH, 'w') as f:
-            full = {}
-            full['schedule']=schedule
-            json.dump(full, f)
+        self.db_manager.write(schedule)
     
     def GetScheduleByDate(self, request, context):
-        print(f"Called GetScheduleByDate with {request}")
+        grpc_logger.info(f"Called GetScheduleByDate with {request}")
+        self.db_manager = get_schedule_db()
+        self.db = self.db_manager.load()
         for day in self.db : 
             if day["date"] == request.date :
                 return schedule_pb2.ScheduleData(date=day["date"], movies=day["movies"])
         return schedule_pb2.ScheduleData(date="", movies=[])
     
     def GetAllScheduleDays(self, request, context):
-        print(f"Called GetAllScheduleDays\n")
+        grpc_logger.info(f"Called GetAllScheduleDays\n")
+        self.db_manager = get_schedule_db()
+        self.db = self.db_manager.load()
         dates = []
         for day in self.db:
             dates.append(schedule_pb2.ScheduleData(date=day["date"], movies=day["movies"]))
         return schedule_pb2.Planning(planning=dates)
     
     def AddScheduleDay(self, request, context):
-        print(f"Called AddScheduleDay with {request}")
+        grpc_logger.info(f"Called AddScheduleDay with {request}")
+        self.db_manager = get_schedule_db()
+        self.db = self.db_manager.load()
         uid = self._extract_uid(context)
         if not checkAdmin(uid):
             context.abort(StatusCode.PERMISSION_DENIED, "Unauthorized")
@@ -94,7 +107,9 @@ class ScheduleServicer(schedule_pb2_grpc.ScheduleServicer):
         return schedule_pb2.ScheduleData(date=daytoadd["date"], movies=daytoadd["movies"])
     
     def DeleteScheduleDay(self, request, context):
-        print(f"Called DeleteScheduleDay with {request}")
+        grpc_logger.info(f"Called DeleteScheduleDay with {request}")
+        self.db_manager = get_schedule_db()
+        self.db = self.db_manager.load()
         uid = self._extract_uid(context)
         if not checkAdmin(uid):
             context.abort(StatusCode.PERMISSION_DENIED, "Unauthorized")
@@ -109,10 +124,10 @@ class ScheduleServicer(schedule_pb2_grpc.ScheduleServicer):
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     schedule_pb2_grpc.add_ScheduleServicer_to_server(ScheduleServicer(), server)
-    server.add_insecure_port('[::]:3002')
+    server.add_insecure_port('[::]:3202')
     server.start()
-    print("Server running in port %s"%(PORT))
-    print("* Serving gRPC app 'schedule'\n")
+    grpc_logger.info("Server running in port %s"%(PORT))
+    grpc_logger.info("* Serving gRPC app 'schedule'\n")
     server.wait_for_termination()
 
 if __name__ == '__main__':

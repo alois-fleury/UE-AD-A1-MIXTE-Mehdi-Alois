@@ -1,7 +1,63 @@
 services:
+  user:
+    build: 
+      context: .
+      dockerfile: ./user/Dockerfile
+    ports:
+      - "3203:3203"
+    environment:
+      - MOVIE_SERVICE_URL=http://movie:3200
+      - BOOKING_SERVICE_URL=http://booking:3201
+      - SCHEDULE_SERVICE_URL=schedule:3202
+      - USER_SERVICE_URL=http://user:3203
+      - DB_URL=mongodb://root:archid@mongo:27017/cineapi?authSource=admin
+    container_name: user
   movie:
-    build: ./movie/
+    build: 
+      context: .
+      dockerfile: ./movie/Dockerfile
     ports:
       - "3200:3200"
-  # to continue
-
+    environment:
+      - MOVIE_SERVICE_URL=http://movie:3200
+      - BOOKING_SERVICE_URL=http://booking:3201
+      - SCHEDULE_SERVICE_URL=schedule:3202
+      - USER_SERVICE_URL=http://user:3203
+      - DB_URL=mongodb://root:archid@mongo:27017/cineapi?authSource=admin
+    container_name: movie
+  schedule:
+    build: 
+      context: .
+      dockerfile: ./schedule/Dockerfile
+    ports:
+      - "3202:3202"
+    environment:
+      - MOVIE_SERVICE_URL=http://movie:3200
+      - BOOKING_SERVICE_URL=http://booking:3201
+      - SCHEDULE_SERVICE_URL=schedule:3202
+      - USER_SERVICE_URL=http://user:3203
+      - DB_URL=mongodb://root:archid@mongo:27017/cineapi?authSource=admin
+    container_name: schedule
+  booking:
+    build: 
+      context: .
+      dockerfile: ./booking/Dockerfile
+    ports:
+      - "3201:3201"
+    environment:
+      - MOVIE_SERVICE_URL=http://movie:3200
+      - BOOKING_SERVICE_URL=http://booking:3201
+      - SCHEDULE_SERVICE_URL=schedule:3202
+      - USER_SERVICE_URL=http://user:3203
+      - DB_URL=mongodb://root:archid@mongo:27017/cineapi?authSource=admin
+    container_name: booking
+  mongo:
+    image: mongo 
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=archid
+      - DB_URL=mongodb://root:archid@mongo:27017/cineapi?authSource=admin
+    container_name: mongo

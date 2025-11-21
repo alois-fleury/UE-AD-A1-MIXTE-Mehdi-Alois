@@ -16,9 +16,7 @@ load_dotenv()
 # CREATION DU CHEMIN
 BASE_DIR = os.path.join(os.path.dirname(__file__), "data")
 
-# OUVERTURE ET FERMETURE AUTOMATIQUE DU FICHIER ET TRANSFORMATION DES DONNEES JSON EN PYTHON
-with open(os.path.join(BASE_DIR, "bookings.json"), encoding="utf-8") as f:
-    booking_data = json.load(f)["bookings"]
+from db import load_booking, write
 
 with open(os.path.join(BASE_DIR, "movies.json"), encoding="utf-8") as f:
     movies_data = json.load(f)["movies"]
@@ -26,6 +24,7 @@ with open(os.path.join(BASE_DIR, "movies.json"), encoding="utf-8") as f:
 # RECUP TOUTES LES RESERVATIONS
 def resolve_all_bookings(_, info):
     booking_list = []
+    booking_data = load_booking()
 
     for booking in booking_data:
         if booking.get("userid") and booking.get("dates"):
@@ -46,6 +45,7 @@ def resolve_all_bookings(_, info):
 
 # RECUP LA RESERVATION AVEC L'ID
 def resolve_booking_with_id(_, info, _id):
+    booking_data = load_booking()
     for booking in booking_data:
         if booking["userid"] == _id:
             new_dates = []
@@ -71,12 +71,15 @@ def resolve_add_booking(_, info, userid, date, movies):
 
     if (userid != uid) and (not checkAdmin(uid)):
         raise GraphQLError("Unauthorized")
-    
+
+    booking_data = load_booking()
+
     # Vérification que la date existe et que les films sont bien programmés
     scheduled = get_schedule_by_date(date)
     if (not scheduled) or (scheduled.get("date", "") == ""):
         raise GraphQLError("No schedule found for the given date")
 
+    # Vérifie si le film est prévu à la date donnée
     scheduled_movie_ids = scheduled.get("movies", [])
     for movie_id in movies:
         if movie_id not in scheduled_movie_ids:
@@ -104,6 +107,8 @@ def resolve_add_booking(_, info, userid, date, movies):
     }
     booking_data.append(new_booking)
 
+    write(booking_data)
+
     # ON RECUP LA RESERVATION AJOUTEE
     return resolve_booking_with_id(_, info, userid)
 
@@ -119,8 +124,10 @@ def resolve_delete_booking(_, info, userid):
     if (userid != uid) and (not checkAdmin(uid)):
         raise GraphQLError("Unauthorized")
     
+    booking_data = load_booking()
     for b in booking_data:
         if b["userid"] == userid:
             booking_data.remove(b)
             return True
+    write(booking_data)
     return False

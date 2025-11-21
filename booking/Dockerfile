@@ -1,6 +1,19 @@
-FROM python:3.8-alpine
+FROM python:3.13-slim
+
 WORKDIR /app
-COPY requirements.txt /app
-RUN pip install -r requirements.txt
-ADD . /app/
-CMD ["python","-u","booking.py"]
+
+# copy the requirements file in the workdir
+COPY requirements.txt .
+
+# install the Python requirements
+RUN pip install --no-cache-dir -r requirements.txt 
+
+# copy the app files and directories
+COPY booking/ .
+
+# copy util files
+COPY checkAdmin.py .
+COPY .env .
+
+# start schedule.py when the container is started
+CMD ["python", "booking.py"]

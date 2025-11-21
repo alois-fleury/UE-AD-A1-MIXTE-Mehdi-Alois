@@ -2,10 +2,15 @@ import grpc
 import json
 import schedule_pb2, schedule_pb2_grpc
 from google.protobuf.json_format import MessageToJson
+from dotenv import load_dotenv
+import os 
+
+load_dotenv()
+SCHEDULE_SERVICE_URL = os.getenv("SCHEDULE_SERVICE_URL", "localhost:3202")
 
 def get_schedule_by_date(requestDate):
-    # FIXME : utiliser envvar
-    with grpc.insecure_channel('localhost:3002') as channel:
+    with grpc.insecure_channel(SCHEDULE_SERVICE_URL) as channel:
+        print("channel : ")
         stub = schedule_pb2_grpc.ScheduleStub(channel)
         scheduleday = schedule_pb2.Date(date=requestDate)
         scheduleByDate = stub.GetScheduleByDate(scheduleday)
@@ -13,8 +18,7 @@ def get_schedule_by_date(requestDate):
     return json.loads(MessageToJson(scheduleByDate))
 
 def run():
-    # FIXME : utiliser envvar
-    with grpc.insecure_channel('localhost:3002') as channel:
+    with grpc.insecure_channel(SCHEDULE_SERVICE_URL) as channel:
         stub = schedule_pb2_grpc.ScheduleStub(channel)
 
         print("-------------- GetScheduleByDate --------------")

@@ -15,19 +15,16 @@ load_dotenv()
 # CREATION DU CHEMIN
 BASE_DIR = os.path.join(os.path.dirname(__file__), "data")
 
-# OUVERTURE ET FERMETURE AUTOMATIQUE DU FICHIER ET TRANSFORMATION DES DONNEES JSON EN PYTHON
-with open(os.path.join(BASE_DIR, "actors.json"), encoding="utf-8") as f:
-    actors_data = json.load(f)["actors"]
-
-with open(os.path.join(BASE_DIR, "movies.json"), encoding="utf-8") as f:
-    movies_data = json.load(f)["movies"]
+from db import load_movies, load_actors, write_movies, write_actors
 
 # RECUP TOUT LES FILMS
 def resolve_all_movies(_, info):
+    movies_data = load_movies()
     return movies_data
 
 # RECUP UN FILM AVEC SON ID
 def resolve_movie_with_id(_, info, _id):
+    movies_data = load_movies()
     for movie in movies_data:
         if movie["id"] == _id:
             return movie
@@ -35,6 +32,7 @@ def resolve_movie_with_id(_, info, _id):
 
 # RECUP UN FILM AVEC SON TITRE
 def resolve_get_movie_by_title(_, info, title):
+    movies_data = load_movies()
     for m in movies_data:
         if m["title"] == title:
             return m
@@ -52,6 +50,8 @@ def resolve_add_movie(_, info, id, title, rating, director):
     if (not checkAdmin(uid)):
         raise GraphQLError("Unauthorized")
     
+    movies_data = load_movies()
+    
     new_movie = {
         "id": id,
         "title": title,
@@ -60,6 +60,7 @@ def resolve_add_movie(_, info, id, title, rating, director):
     }
 
     movies_data.append(new_movie)
+    write_movies(movies_data)
     return new_movie
 
 # UPDATE LE RATING D'UN FILM
@@ -73,9 +74,11 @@ def resolve_update_movie(_, info, id, rating):
 
     if (not checkAdmin(uid)):
         raise GraphQLError("Unauthorized")
+    movies_data = load_movies()
     for m in movies_data:
         if m["id"] == id:
                 m["rating"] = rating
+    write_movies(movies_data)
     return m
 
 # DELETE MOVIE
@@ -90,6 +93,9 @@ def resolve_delete_movie(_, info, id):
     if (not checkAdmin(uid)):
         raise GraphQLError("Unauthorized")
     
+    movies_data = load_movies()
+    actors_data = load_actors()
+
     for m in movies_data:
         if m["id"] == id:
             movies_data.remove(m)
@@ -97,6 +103,8 @@ def resolve_delete_movie(_, info, id):
             for actor in actors_data:
                 if m["id"] in actor["films"]:
                     actor["films"].remove(m["id"])
+            write_movies(movies_data)
+            write_actors(actors_data)
             return True
     return False
 
@@ -104,6 +112,8 @@ def resolve_delete_movie(_, info, id):
 # RECUP TOUT LES ACTEURS AVEC LA LISTE DE LEURS FILMS
 def resolve_all_actors(_, info):
     actors_list = []
+    movies_data = load_movies()
+    actors_data = load_actors()
     for actor in actors_data:
         if actor.get("firstname") and actor.get("lastname") and actor.get("birthyear") and actor.get("id"):
             actor_with_films = {
@@ -114,10 +124,13 @@ def resolve_all_actors(_, info):
                 "films": [ m for m in movies_data if (m["id"] in actor.get('films',[])) ]
             }
             actors_list.append(actor_with_films)
+    write_actors(actors_data)
     return actors_list
 
 # RECUP UN SEUL ACTEUR AVEC SON ID AVEC LA LISTE DE SES FILMS
 def resolve_actor_with_id(_, info, _id):
+    movies_data = load_movies()
+    actors_data = load_actors()
     for actor in actors_data:
         if actor["id"] == _id:
             return {
@@ -127,10 +140,13 @@ def resolve_actor_with_id(_, info, _id):
                 "birthyear": actor["birthyear"],
                 "films": [m for m in movies_data if m["id"] in actor.get("films", [])]
             }
+    write_actors(actors_data)
     return None
 
 # AJOUTER UN ACTOR
 def resolve_add_actor(_, info, id, first_name, last_name, birthyear, films):
+    movies_data = load_movies()
+    actors_data = load_actors()
     existing_movie_ids = [movie["id"] for movie in movies_data]
     for film in films:
         if film not in existing_movie_ids:
@@ -144,6 +160,7 @@ def resolve_add_actor(_, info, id, first_name, last_name, birthyear, films):
     }
 
     actors_data.append(new_actor)
+    write_actors(actors_data)
 
     return {
         "id": id,
@@ -155,6 +172,8 @@ def resolve_add_actor(_, info, id, first_name, last_name, birthyear, films):
 
 # UPDATE UN ACTOR
 def resolve_update_actor_films(_, info, id, films):
+    movies_data = load_movies()
+    actors_data = load_actors()
     existing_movie_ids = [movie["id"] for movie in movies_data]
     for film in films:
         if film not in existing_movie_ids:
@@ -169,10 +188,12 @@ def resolve_update_actor_films(_, info, id, films):
                 "birthyear": a["birthyear"],
                 "films": [m for m in movies_data if m["id"] in films]
             }
+    write_actors(actors_data)
     return None
 
 # DELETE ACTOR
 def resolve_delete_actor(_, info, id):
+    actors_data = load_actors()
     for a in actors_data:
         if a["id"] == id:
             actors_data.remove(a)
