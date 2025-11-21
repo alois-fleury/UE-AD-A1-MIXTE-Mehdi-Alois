@@ -5,6 +5,10 @@ import schedule_pb2
 import schedule_pb2_grpc
 import json
 import os 
+import requests
+
+MOVIE_SERVICE_URL="http://127.0.0.1:3200/graphql"
+BOOKING_SERVICE_URL="http://127.0.0.1:3201/graphql"
 
 PORT = 3002
 
@@ -39,12 +43,33 @@ class ScheduleServicer(schedule_pb2_grpc.ScheduleServicer):
     
     def AddScheduleDay(self, request, context):
         print(f"Called AddScheduleDay with {request}")
+        # TODO : auth
         # if not (checkAdmin(request.args.get("uid"))):
         #     return jsonify({"error": "Unauthorized"}), 403
 
         for day in self.db:
             if day["date"] == request.date:
                 context.abort(StatusCode.ALREADY_EXISTS, "Cette date existe déjà")
+    
+        query = """
+        query {
+            all_movies {
+                id
+            }
+        }
+        """
+
+        payload = {
+            "query": query
+        }
+
+        response = requests.post(MOVIE_SERVICE_URL, json=payload)
+        data = response.json()          
+        existing_movie_ids = [movie["id"] for movie in data["data"]["all_movies"]]
+
+        for mid in request.movies:
+            if mid not in existing_movie_ids:
+                context.abort(StatusCode.INVALID_ARGUMENT, "Un film inexistant a été précisé")
         daytoadd = {
             'date': request.date,
             'movies': list(request.movies)
