@@ -5,6 +5,9 @@ import resolvers as r
 
 app = Flask(__name__)
 
+PORT = 3200
+HOST = '0.0.0.0'
+
 # Charger le schema GraphQL
 type_defs = load_schema_from_path("movie.graphql")
 
@@ -50,4 +53,6 @@ def graphql_server():
     return jsonify(result)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=3001)
+    #p = sys.argv[1]
+    print("Server running in port %s"%(PORT))
+    app.run(host=HOST, port=PORT)
