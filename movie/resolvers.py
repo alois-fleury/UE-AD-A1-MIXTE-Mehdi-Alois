@@ -1,5 +1,6 @@
 import json
 import os
+from graphql import GraphQLError
 
 # CREATION DU CHEMIN
 BASE_DIR = os.path.join(os.path.dirname(__file__), "data")
@@ -53,6 +54,10 @@ def resolve_delete_movie(_, info, id):
     for m in movies_data:
         if m["id"] == id:
             movies_data.remove(m)
+            # Lorsqu'on supprime un film, on le supprime de la liste pour chaque acteur
+            for actor in actors_data:
+                if m["id"] in actor["films"]:
+                    actor["films"].remove(m["id"])
             return True
     return False
 
@@ -87,6 +92,10 @@ def resolve_actor_with_id(_, info, _id):
 
 # AJOUTER UN ACTOR
 def resolve_add_actor(_, info, id, first_name, last_name, birthyear, films):
+    existing_movie_ids = [movie["id"] for movie in movies_data]
+    for film in films:
+        if film not in existing_movie_ids:
+            raise GraphQLError(f"Movie {film} not found")
     new_actor = {
         "id": id,
         "firstname": first_name,
@@ -97,10 +106,20 @@ def resolve_add_actor(_, info, id, first_name, last_name, birthyear, films):
 
     actors_data.append(new_actor)
 
-    return new_actor
+    return {
+        "id": id,
+        "first_name": first_name,
+        "last_name": last_name,
+        "birthyear": birthyear,
+        "films": [m for m in movies_data if m["id"] in films]
+    }
 
 # UPDATE UN ACTOR 
 def resolve_update_actor_films(_, info, id, films):
+    existing_movie_ids = [movie["id"] for movie in movies_data]
+    for film in films:
+        if film not in existing_movie_ids:
+            raise GraphQLError(f"Movie {film} not found")
     for a in actors_data:
         if a["id"] == id:
             a["films"] = films
