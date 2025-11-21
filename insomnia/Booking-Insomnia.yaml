@@ -64,7 +64,7 @@ collection:
     meta:
       id: req_4857e5601d754933b7446fc1dcc2c27a
       created: 1763647158507
-      modified: 1763687950381
+      modified: 1763694500371
       isPrivate: false
       description: ""
       sortKey: -1763647158507
@@ -75,6 +75,12 @@ collection:
         \"20151201\", movies: [\"267eedb8-0f5d-42d5-8f43-72426b9fb3e6\"])
         {\n    userid\n    dates {\n      date\n      movies
         {\n        id\n        title\n      }\n    }\n  }\n}\n"}'
+    parameters:
+      - id: pair_593e9c0363804d32b91081941330508a
+        name: uid
+        value: michael_scott
+        description: ""
+        disabled: false
     headers:
       - name: User-Agent
         value: insomnia/12.0.0
@@ -93,7 +99,7 @@ collection:
     meta:
       id: req_ca42d111e393460ea532a983c5609db0
       created: 1763647383384
-      modified: 1763686181909
+      modified: 1763694607349
       isPrivate: false
       description: ""
       sortKey: -1763647383384
@@ -101,6 +107,12 @@ collection:
     body:
       mimeType: application/graphql
       text: '{"query":"mutation {\n  delete_booking(userid: \"mehdi\")\n}\n"}'
+    parameters:
+      - id: pair_273232798fe84e4aa987a31458e520f7
+        name: uid
+        value: mehdi
+        description: ""
+        disabled: false
     headers:
       - name: User-Agent
         value: insomnia/12.0.0
@@ -119,7 +131,7 @@ collection:
     meta:
       id: req_d4498e191b114281b25a5b1ce7c656db
       created: 1763687880356
-      modified: 1763687894415
+      modified: 1763694511825
       isPrivate: false
       description: ""
       sortKey: -1762594971140.25
@@ -130,6 +142,12 @@ collection:
         \"20770101\", movies: [\"267eedb8-0f5d-42d5-8f43-72426b9fb3e6\"])
         {\n    userid\n    dates {\n      date\n      movies
         {\n        id\n        title\n      }\n    }\n  }\n}\n"}'
+    parameters:
+      - id: pair_25aeb5a989b14f119b7ea0bcf4c67591
+        name: uid
+        value: michael_scott
+        description: ""
+        disabled: false
     headers:
       - name: User-Agent
         value: insomnia/12.0.0
@@ -159,6 +177,41 @@ collection:
         \"20151201\", movies: [\"267eedb8-ffff-ffff-ffff-72426b9fb3e6\"])
         {\n    userid\n    dates {\n      date\n      movies
         {\n        id\n        title\n      }\n    }\n  }\n}\n"}'
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.baselink }}/graphql"
+    name: ADD BOOKING UNKNOWN UID
+    meta:
+      id: req_cf58c955a4574ede900c6e697587878e
+      created: 1763694522451
+      modified: 1763694527352
+      isPrivate: false
+      description: ""
+      sortKey: -1762331924298.5625
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"mutation {\n  add_booking(userid: \"mehdi\", date:
+        \"20770101\", movies: [\"267eedb8-0f5d-42d5-8f43-72426b9fb3e6\"])
+        {\n    userid\n    dates {\n      date\n      movies
+        {\n        id\n        title\n      }\n    }\n  }\n}\n"}'
+    parameters:
+      - id: pair_25aeb5a989b14f119b7ea0bcf4c67591
+        name: uid
+        value: no
+        description: ""
+        disabled: false
     headers:
       - name: User-Agent
         value: insomnia/12.0.0

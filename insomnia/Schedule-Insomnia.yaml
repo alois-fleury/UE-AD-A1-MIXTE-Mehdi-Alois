@@ -53,7 +53,7 @@ collection:
     meta:
       id: greq_0ce8c6cb56294907b6d6b700f2dce3b5
       created: 1763677615978
-      modified: 1763689042757
+      modified: 1763695095816
       isPrivate: false
       sortKey: -1763677379834
       description: ""
@@ -66,6 +66,12 @@ collection:
         	],
         	"date": "20250118"
         }
+    metadata:
+      - id: pair_9d846c926cfd4bf3b9ddf23ec300049f
+        name: uid
+        value: michael_scott
+        description: ""
+        disabled: false
     protoFileId: pf_a9d93384772b4c6cabd1d19a71552ab0
     protoMethodName: /Schedule/AddScheduleDay
     reflectionApi:
@@ -78,12 +84,18 @@ collection:
     meta:
       id: greq_b2527a1dcd564df39e55a3db137c02ce
       created: 1763677676652
-      modified: 1763677708285
+      modified: 1763695151380
       isPrivate: false
       sortKey: -1763677379734
       description: ""
     body:
       text: '{"date": "20250118"}'
+    metadata:
+      - id: pair_f4dc1c97a7a54b7d9652170a615b29be
+        name: uid
+        value: michael_scott
+        description: ""
+        disabled: false
     protoFileId: pf_a9d93384772b4c6cabd1d19a71552ab0
     protoMethodName: /Schedule/DeleteScheduleDay
     reflectionApi:
@@ -96,7 +108,7 @@ collection:
     meta:
       id: greq_2f1aa822b7e245639f14d6c96186b6e2
       created: 1763690129859
-      modified: 1763690194516
+      modified: 1763695105942
       isPrivate: false
       sortKey: -1763677379784
       description: ""
@@ -109,8 +121,38 @@ collection:
         	],
         	"date": "20260219"
         }
+    metadata:
+      - id: pair_d18400f67c33456eb9f1acbfcf28da77
+        name: uid
+        value: michael_scott
+        description: ""
+        disabled: false
     protoFileId: pf_a9d93384772b4c6cabd1d19a71552ab0
     protoMethodName: /Schedule/AddScheduleDay
+    reflectionApi:
+      enabled: false
+      url: https://buf.build
+      apiKey: ""
+      module: buf.build/connectrpc/eliza
+  - url: "{{ _.baselink }}"
+    name: Delete schedule day not admin
+    meta:
+      id: greq_fdeec73534144cabac95e77b609f6d47
+      created: 1763695158696
+      modified: 1763695196761
+      isPrivate: false
+      sortKey: -1763677379634
+      description: ""
+    body:
+      text: '{"date": "20250118"}'
+    metadata:
+      - id: pair_e41c7c7a805f4e9daf397cef75818c67
+        name: uid
+        value: jim_halpert
+        description: ""
+        disabled: false
+    protoFileId: pf_a9d93384772b4c6cabd1d19a71552ab0
+    protoMethodName: /Schedule/DeleteScheduleDay
     reflectionApi:
       enabled: false
       url: https://buf.build

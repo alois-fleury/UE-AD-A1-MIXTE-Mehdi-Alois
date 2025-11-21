@@ -226,7 +226,7 @@ collection:
     meta:
       id: req_ce0efd5a7f2b4d99b951fd43a8556b9e
       created: 1763650620661
-      modified: 1763685977650
+      modified: 1763694719557
       isPrivate: false
       description: ""
       sortKey: -1759590418663.5
@@ -236,6 +236,12 @@ collection:
       text: '{"query":"mutation {\n  add_movie(\n    id:\"m900\",\n    title:\"Fast
         X\",\n    rating:7.5,\n    director:\"Louis Leterrier\"\n  )
         {\n    id\n    title\n  }\n}\n"}'
+    parameters:
+      - id: pair_63d9d02c733948d3907b6ad0aed940a8
+        name: uid
+        value: michael_scott
+        description: ""
+        disabled: false
     headers:
       - name: User-Agent
         value: insomnia/12.0.0
@@ -254,7 +260,7 @@ collection:
     meta:
       id: req_8e98f39c1f964270a3733675fec46b54
       created: 1763651950806
-      modified: 1763686003402
+      modified: 1763694763028
       isPrivate: false
       description: ""
       sortKey: -1759590434125.75
@@ -264,6 +270,12 @@ collection:
       text: '{"query":"mutation
         {\n  update_movie(\n    id:\"m900\",\n    rating:8.1\n  )
         {\n    title\n    rating\n  }\n}\n"}'
+    parameters:
+      - id: pair_68b139b9686e43258dfdde2c9eed7327
+        name: uid
+        value: michael_scott
+        description: ""
+        disabled: false
     headers:
       - name: User-Agent
         value: insomnia/12.0.0
@@ -282,7 +294,7 @@ collection:
     meta:
       id: req_23de490ea00d495db758424a3392b7b5
       created: 1763651994406
-      modified: 1763687314684
+      modified: 1763694806619
       isPrivate: false
       description: ""
       sortKey: -1759590441856.875
@@ -290,6 +302,12 @@ collection:
     body:
       mimeType: application/graphql
       text: '{"query":"mutation {\n  delete_movie(id:\"m900\")\n}\n"}'
+    parameters:
+      - id: pair_a5a8b42337ef42e394b42c49b7e4387c
+        name: uid
+        value: michael_scott
+        description: ""
+        disabled: false
     headers:
       - name: User-Agent
         value: insomnia/12.0.0
@@ -308,7 +326,7 @@ collection:
     meta:
       id: req_5a51b0a113e8496d97098dd9f25903fd
       created: 1763652052934
-      modified: 1763687077107
+      modified: 1763694817321
       isPrivate: false
       description: ""
       sortKey: -1763652052934
@@ -318,6 +336,12 @@ collection:
       text: '{"query":"mutation
         {\n  add_actor(\n    id:\"a100\",\n    first_name:\"John\",\n    last_name:\"Doe\",\n    birthyear:\"1990\",\n    films:[\"267eedb8-0f5d-42d5-8f43-72426b9fb3e6\"]\n  )
         {\n    id\n    first_name\n    films { title }\n  }\n}\n"}'
+    parameters:
+      - id: pair_d80ec97647344ecbbec157603bc74aea
+        name: uid
+        value: michael_scott
+        description: ""
+        disabled: false
     headers:
       - name: User-Agent
         value: insomnia/12.0.0
@@ -336,7 +360,7 @@ collection:
     meta:
       id: req_50b792dd764e4f80ba451004a6143d23
       created: 1763652127597
-      modified: 1763686073421
+      modified: 1763694821336
       isPrivate: false
       description: ""
       sortKey: -1763652127597
@@ -346,6 +370,12 @@ collection:
       text: '{"query":"mutation
         {\n  update_actor_films(\n    id:\"a100\",\n    films:[\"276c79ec-a26a-40a6-b3d3-fb242a5947b6\"]\n  )
         {\n    id\n    films { title }\n  }\n}\n"}'
+    parameters:
+      - id: pair_5c28e2b7ce854926a9ce5aa67158cdca
+        name: uid
+        value: michael_scott
+        description: ""
+        disabled: false
     headers:
       - name: User-Agent
         value: insomnia/12.0.0
@@ -364,7 +394,7 @@ collection:
     meta:
       id: req_8f4fbdf8240144c1874478c7f51f5e58
       created: 1763652213643
-      modified: 1763686079943
+      modified: 1763694824548
       isPrivate: false
       description: ""
       sortKey: -1763652213643
@@ -372,6 +402,12 @@ collection:
     body:
       mimeType: application/graphql
       text: '{"query":"mutation {\n  delete_actor(id:\"a100\")\n}\n"}'
+    parameters:
+      - id: pair_06b59829a2d84491bd7c41730a2439a0
+        name: uid
+        value: michael_scott
+        description: ""
+        disabled: false
     headers:
       - name: User-Agent
         value: insomnia/12.0.0
@@ -390,7 +426,7 @@ collection:
     meta:
       id: req_326e2ac495514d358677873b6c70caa1
       created: 1763687135317
-      modified: 1763687238169
+      modified: 1763694828213
       isPrivate: false
       description: ""
       sortKey: -1763652213693
@@ -400,6 +436,12 @@ collection:
       text: '{"query":"mutation
         {\n  add_actor(\n    id:\"a100\",\n    first_name:\"John\",\n    last_name:\"Krasinski\",\n    birthyear:\"1990\",\n    films:[\"269eedb8-ffff-ffff-ffff-72426b9fb3e6\"]\n  )
         {\n    id\n    first_name\n    films { title }\n  }\n}\n"}'
+    parameters:
+      - id: pair_9d83f9a9b13949e285b43c06a8158ae5
+        name: uid
+        value: michael_scott
+        description: ""
+        disabled: false
     headers:
       - name: User-Agent
         value: insomnia/12.0.0
@@ -418,7 +460,7 @@ collection:
     meta:
       id: req_c4a0f5030dcf4aea9fde15dc65da902d
       created: 1763687376142
-      modified: 1763687628402
+      modified: 1763694799043
       isPrivate: false
       description: ""
       sortKey: -1759590437991.3125
@@ -427,6 +469,12 @@ collection:
       mimeType: application/graphql
       text: '{"query":"mutation
         {\n  delete_movie(id:\"96798c08-d19b-4986-a05d-7da856efb697\")\n}\n"}'
+    parameters:
+      - id: pair_c7012653b3f6443da839e34a5fc590eb
+        name: uid
+        value: michael_scott
+        description: ""
+        disabled: false
     headers:
       - name: User-Agent
         value: insomnia/12.0.0
@@ -445,7 +493,7 @@ collection:
     meta:
       id: req_c4fbf43a73a040bba54dbfc076a9bc34
       created: 1763687683509
-      modified: 1763687735438
+      modified: 1763694831314
       isPrivate: false
       description: ""
       sortKey: -1763652213718
@@ -455,6 +503,12 @@ collection:
       text: '{"query":"mutation
         {\n  update_actor_films(\n    id:\"actor1\",\n    films:[\"276c79ec-ffff-ffff-ffff-fb242a5947b6\"]\n  )
         {\n    id\n    films { title }\n  }\n}\n"}'
+    parameters:
+      - id: pair_4608d271335d4cb0a77faea9be81492d
+        name: uid
+        value: michael_scott
+        description: ""
+        disabled: false
     headers:
       - name: User-Agent
         value: insomnia/12.0.0
