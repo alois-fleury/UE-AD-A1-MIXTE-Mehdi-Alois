@@ -2,6 +2,14 @@ import json
 import os
 from graphql import GraphQLError
 from grpcScheduleClient import get_schedule_by_date
+import os
+import sys
+
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+if parent_dir not in sys.path:
+    sys.path.append(parent_dir)
+
+from checkAdmin import checkAdmin
 
 # CREATION DU CHEMIN
 BASE_DIR = os.path.join(os.path.dirname(__file__), "data")
@@ -52,6 +60,16 @@ def resolve_booking_with_id(_, info, _id):
 
 #AJOUTER UNE RESERVATION
 def resolve_add_booking(_, info, userid, date, movies):
+    req = info.context
+    uid = None
+    if hasattr(req, "args"):
+        uid = req.args.get("uid")
+    elif isinstance(req, dict):
+        uid = req.get("uid")
+
+    if (userid != uid) and (not checkAdmin(uid)):
+        raise GraphQLError("Unauthorized")
+    
     # Vérification que la date existe et que les films sont bien programmés
     scheduled = get_schedule_by_date(date)
     if (not scheduled) or (scheduled.get("date", "") == ""):
@@ -89,6 +107,16 @@ def resolve_add_booking(_, info, userid, date, movies):
 
 def resolve_delete_booking(_, info, userid):
     # TODO : supprimer partiellement un booking
+    req = info.context
+    uid = None
+    if hasattr(req, "args"):
+        uid = req.args.get("uid")
+    elif isinstance(req, dict):
+        uid = req.get("uid")
+
+    if (userid != uid) and (not checkAdmin(uid)):
+        raise GraphQLError("Unauthorized")
+    
     for b in booking_data:
         if b["userid"] == userid:
             booking_data.remove(b)

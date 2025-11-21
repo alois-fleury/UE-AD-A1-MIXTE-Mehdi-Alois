@@ -1,6 +1,14 @@
 import json
 import os
 from graphql import GraphQLError
+import os
+import sys
+
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+if parent_dir not in sys.path:
+    sys.path.append(parent_dir)
+
+from checkAdmin import checkAdmin
 
 # CREATION DU CHEMIN
 BASE_DIR = os.path.join(os.path.dirname(__file__), "data")
@@ -32,6 +40,16 @@ def resolve_get_movie_by_title(_, info, title):
 
 # AJOUTER UN FILM
 def resolve_add_movie(_, info, id, title, rating, director):
+    req = info.context
+    uid = None
+    if hasattr(req, "args"):
+        uid = req.args.get("uid")
+    elif isinstance(req, dict):
+        uid = req.get("uid")
+
+    if (not checkAdmin(uid)):
+        raise GraphQLError("Unauthorized")
+    
     new_movie = {
         "id": id,
         "title": title,
@@ -44,6 +62,15 @@ def resolve_add_movie(_, info, id, title, rating, director):
 
 # UPDATE LE RATING D'UN FILM
 def resolve_update_movie(_, info, id, rating):
+    req = info.context
+    uid = None
+    if hasattr(req, "args"):
+        uid = req.args.get("uid")
+    elif isinstance(req, dict):
+        uid = req.get("uid")
+
+    if (not checkAdmin(uid)):
+        raise GraphQLError("Unauthorized")
     for m in movies_data:
         if m["id"] == id:
                 m["rating"] = rating
@@ -51,6 +78,16 @@ def resolve_update_movie(_, info, id, rating):
 
 # DELETE MOVIE
 def resolve_delete_movie(_, info, id):
+    req = info.context
+    uid = None
+    if hasattr(req, "args"):
+        uid = req.args.get("uid")
+    elif isinstance(req, dict):
+        uid = req.get("uid")
+
+    if (not checkAdmin(uid)):
+        raise GraphQLError("Unauthorized")
+    
     for m in movies_data:
         if m["id"] == id:
             movies_data.remove(m)

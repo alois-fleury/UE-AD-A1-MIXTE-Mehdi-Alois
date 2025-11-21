@@ -6,6 +6,13 @@ import schedule_pb2_grpc
 import json
 import os 
 import requests
+import sys 
+
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+if parent_dir not in sys.path:
+    sys.path.append(parent_dir)
+
+from checkAdmin import checkAdmin
 
 MOVIE_SERVICE_URL="http://127.0.0.1:3200/graphql"
 BOOKING_SERVICE_URL="http://127.0.0.1:3201/graphql"
@@ -20,6 +27,12 @@ class ScheduleServicer(schedule_pb2_grpc.ScheduleServicer):
     def __init__(self):
         with open(DB_PATH, "r") as jsf:
             self.db = json.load(jsf)["schedule"]
+
+    def _extract_uid(self, context):
+        for key, value in context.invocation_metadata() or []:
+            if key == "uid":
+                return value
+        return None
     
     def write(self, schedule):
         with open(DB_PATH, 'w') as f:
@@ -43,9 +56,9 @@ class ScheduleServicer(schedule_pb2_grpc.ScheduleServicer):
     
     def AddScheduleDay(self, request, context):
         print(f"Called AddScheduleDay with {request}")
-        # TODO : auth
-        # if not (checkAdmin(request.args.get("uid"))):
-        #     return jsonify({"error": "Unauthorized"}), 403
+        uid = self._extract_uid(context)
+        if not checkAdmin(uid):
+            context.abort(StatusCode.PERMISSION_DENIED, "Unauthorized")
 
         for day in self.db:
             if day["date"] == request.date:
@@ -80,8 +93,9 @@ class ScheduleServicer(schedule_pb2_grpc.ScheduleServicer):
     
     def DeleteScheduleDay(self, request, context):
         print(f"Called DeleteScheduleDay with {request}")
-        # if not (checkAdmin(request.args.get("uid"))):
-        #     return jsonify({"error": "Unauthorized"}), 403
+        uid = self._extract_uid(context)
+        if not checkAdmin(uid):
+            context.abort(StatusCode.PERMISSION_DENIED, "Unauthorized")
 
         for day in self.db:
             if day["date"] == request.date:
