@@ -29,7 +29,7 @@ Attention, il faut bien veiller à ce que le service user soit lancé lorsqu'on 
 
 L'architecture suivie est en microservices et son schéma est le suivant : 
 
-![Schéma de l'architecure du projet](images/schema-architecture-projet.png)
+![Schéma de l'architecure du projet](./ARCHI-MIXTE.png)
 
 ## Tests et exemples
 
