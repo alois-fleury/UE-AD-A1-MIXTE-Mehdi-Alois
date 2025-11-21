@@ -1,17 +1,17 @@
 type: collection.insomnia.rest/5.0
 name: "GRAPHQL REQUESTS : BOOKING"
 meta:
-  id: wrk_08f1f36e2ba34014a8668aa600841f4f
-  created: 1762794508867
-  modified: 1763233779458
+  id: wrk_8b543343068647a38daa9c6a9b1f104f
+  created: 1763651150966
+  modified: 1763651150966
   description: ""
 collection:
   - url: http://172.20.10.2:3001/graphql
     name: GET ALL BOOKINGS
     meta:
-      id: req_31591e1cc2074ccb8c2a22963b7c0d14
+      id: req_e9004cab53e14a399d5a86b1c6843690
       created: 1759596630052
-      modified: 1763233779456
+      modified: 1763651059908
       isPrivate: false
       description: ""
       sortKey: -1759596630052
@@ -35,9 +35,9 @@ collection:
   - url: http://172.20.10.2:3001/graphql
     name: GET BOOKING WITH ID
     meta:
-      id: req_299daa4076114a8ba908e1ab8d220b26
+      id: req_f8bc967559064a98824c1cd22127a518
       created: 1759596849376
-      modified: 1763233779454
+      modified: 1763647184324
       isPrivate: false
       description: ""
       sortKey: -1759596849376
@@ -59,16 +59,71 @@ collection:
         send: true
         store: true
       rebuildPath: true
+  - url: http://127.0.0.1:3001/graphql
+    name: ADD BOOKING
+    meta:
+      id: req_1148879c85e047299200bb922072991c
+      created: 1763647158507
+      modified: 1763647467692
+      isPrivate: false
+      description: ""
+      sortKey: -1763647158507
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"mutation {\n  add_booking(userid: \"mehdi\", date:
+        \"20250101\", movies: [\"267eedb8-0f5d-42d5-8f43-72426b9fb3e6\"])
+        {\n    userid\n    dates {\n      date\n      movies
+        {\n        id\n        title\n      }\n    }\n  }\n}\n"}'
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://127.0.0.1:3001/graphql
+    name: DELETE BOOKING
+    meta:
+      id: req_168e82af27924218a38fd3b37b6ed767
+      created: 1763647383384
+      modified: 1763647472238
+      isPrivate: false
+      description: ""
+      sortKey: -1763647383384
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"mutation {\n  delete_booking(userid: \"mehdi\")\n}\n"}'
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
 cookieJar:
   name: Default Jar
   meta:
-    id: jar_0ed287d09d8b7f8dcdb65879fb2c2215ff4c866b
-    created: 1763233779480
-    modified: 1763233779480
+    id: jar_43b054ddc85c4d4d9ec869fd85d81f7b
+    created: 1759596606292
+    modified: 1759596606292
 environments:
   name: Base Environment
   meta:
-    id: env_243fe5ad927348378b55f939b34a84e2
+    id: env_b217efaa7af3444fb54e113802bb544e
     created: 1759596606288
-    modified: 1763233779453
+    modified: 1759596606288
     isPrivate: false
