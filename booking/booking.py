@@ -4,6 +4,9 @@ import resolvers as r
 
 app = Flask(__name__)
 
+PORT = 3201
+HOST = '0.0.0.0'
+
 # Charger le schema GraphQL
 type_defs = load_schema_from_path("booking.graphql")
 
@@ -11,11 +14,11 @@ type_defs = load_schema_from_path("booking.graphql")
 query = QueryType()
 mutation = MutationType()
 
-# Lier les queries aux résolveurs 
+# Lier les queries aux résolveurs
 query.set_field("all_bookings", r.resolve_all_bookings)
 query.set_field("booking_with_id", r.resolve_booking_with_id)
 
-# Lier les mutations aux résolveurs 
+# Lier les mutations aux résolveurs
 mutation.set_field("delete_booking", r.resolve_delete_booking)
 mutation.set_field("add_booking", r.resolve_add_booking)
 
@@ -34,4 +37,5 @@ def graphql_server():
     return jsonify(result)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=3001)
+   print("Server running in port %s"%(PORT))
+   app.run(host=HOST, port=PORT)

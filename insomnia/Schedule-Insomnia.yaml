@@ -1,0 +1,133 @@
+type: collection.insomnia.rest/5.0
+name: MIXTE-Schedule-gRPC
+meta:
+  id: wrk_0e7f20094bab48d5b2c928d1934135ab
+  created: 1763645356574
+  modified: 1763645356574
+  description: ""
+collection:
+  - url: "{{ _.baselink }}"
+    name: Get all schedule days
+    meta:
+      id: greq_d6ef142c57054e75b6e44271d4199fcd
+      created: 1763677380034
+      modified: 1763677479231
+      isPrivate: false
+      sortKey: -1763677380034
+      description: ""
+    body:
+      text: "{}"
+    metadata:
+      - id: pair_e0b663e72760474884262c9cc32581ab
+        name: ""
+        value: ""
+        description: ""
+        disabled: false
+    protoFileId: pf_a9d93384772b4c6cabd1d19a71552ab0
+    protoMethodName: /Schedule/GetAllScheduleDays
+    reflectionApi:
+      enabled: false
+      url: https://buf.build
+      apiKey: ""
+      module: buf.build/connectrpc/eliza
+  - url: "{{ _.baselink }}"
+    name: Get schedule by date
+    meta:
+      id: greq_9ab6ba92f4784e63bdf69d8418c35906
+      created: 1763677563311
+      modified: 1763677612605
+      isPrivate: false
+      sortKey: -1763677379934
+      description: ""
+    body:
+      text: '{"date": "20151130"}'
+    protoFileId: pf_a9d93384772b4c6cabd1d19a71552ab0
+    protoMethodName: /Schedule/GetScheduleByDate
+    reflectionApi:
+      enabled: false
+      url: https://buf.build
+      apiKey: ""
+      module: buf.build/connectrpc/eliza
+  - url: "{{ _.baselink }}"
+    name: Add schedule day
+    meta:
+      id: greq_0ce8c6cb56294907b6d6b700f2dce3b5
+      created: 1763677615978
+      modified: 1763689042757
+      isPrivate: false
+      sortKey: -1763677379834
+      description: ""
+    body:
+      text: |-
+        {
+        	"movies": [
+        		"720d006c-3a57-4b6a-b18f-9b713b073f3c",
+        		"39ab85e5-5e8e-4dc5-afea-65dc368bd7ab"
+        	],
+        	"date": "20250118"
+        }
+    protoFileId: pf_a9d93384772b4c6cabd1d19a71552ab0
+    protoMethodName: /Schedule/AddScheduleDay
+    reflectionApi:
+      enabled: false
+      url: https://buf.build
+      apiKey: ""
+      module: buf.build/connectrpc/eliza
+  - url: "{{ _.baselink }}"
+    name: Delete schedule day
+    meta:
+      id: greq_b2527a1dcd564df39e55a3db137c02ce
+      created: 1763677676652
+      modified: 1763677708285
+      isPrivate: false
+      sortKey: -1763677379734
+      description: ""
+    body:
+      text: '{"date": "20250118"}'
+    protoFileId: pf_a9d93384772b4c6cabd1d19a71552ab0
+    protoMethodName: /Schedule/DeleteScheduleDay
+    reflectionApi:
+      enabled: false
+      url: https://buf.build
+      apiKey: ""
+      module: buf.build/connectrpc/eliza
+  - url: "{{ _.baselink }}"
+    name: Add schedule day unexisting film
+    meta:
+      id: greq_2f1aa822b7e245639f14d6c96186b6e2
+      created: 1763690129859
+      modified: 1763690194516
+      isPrivate: false
+      sortKey: -1763677379784
+      description: ""
+    body:
+      text: |-
+        {
+        	"movies": [
+        		"720d006c-3a57-4b6a-b18f-9b713b073f3c",
+        		"39ab85e5-ffff-ffff-ffff-65dc368bd7ab"
+        	],
+        	"date": "20260219"
+        }
+    protoFileId: pf_a9d93384772b4c6cabd1d19a71552ab0
+    protoMethodName: /Schedule/AddScheduleDay
+    reflectionApi:
+      enabled: false
+      url: https://buf.build
+      apiKey: ""
+      module: buf.build/connectrpc/eliza
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_c7902645b7cc5a40319c7a26abf56b0594b4525c
+    created: 1763645356587
+    modified: 1763645356587
+environments:
+  name: Base Environment
+  meta:
+    id: env_c7902645b7cc5a40319c7a26abf56b0594b4525c
+    created: 1763645356577
+    modified: 1763689210082
+    isPrivate: false
+  data:
+    baselink: http://127.0.0.1:3002

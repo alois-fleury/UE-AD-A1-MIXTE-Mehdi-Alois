@@ -1,0 +1,485 @@
+type: collection.insomnia.rest/5.0
+name: "GRAPHQL REQUESTS : MOVIE (1)"
+meta:
+  id: wrk_35c3fcd4dbef44e6a7344f907215326c
+  created: 1763685730707
+  modified: 1763688120939
+  description: ""
+collection:
+  - url: http://172.20.10.2:3001
+    name: WELCOME TO THE MOVIE SERVICE !
+    meta:
+      id: req_d162972a3b39455cbbd9f185ed6edbfe
+      created: 1759590117568
+      modified: 1763649967254
+      isPrivate: false
+      description: ""
+      sortKey: -1759590117568
+    method: GET
+    body:
+      mimeType: application/graphql
+      text: ""
+    headers:
+      - name: User-Agent
+        value: insomnia/11.6.1
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.baselink }}/graphql"
+    name: GET ALL MOVIES
+    meta:
+      id: req_2e7058b6df4e49cd994fb52d17d31a1d
+      created: 1759590202192
+      modified: 1763685945112
+      isPrivate: false
+      description: ""
+      sortKey: -1759590202192
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"query {\n  all_movies
+        {\n    id\n    title\n\t\trating\n\t\tdirector\n  }\n}\n"}'
+    headers:
+      - name: User-Agent
+        value: insomnia/11.6.1
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.baselink }}/graphql"
+    name: GET ALL ACTORS WITH MOVIES LIST
+    meta:
+      id: req_255f9db3dd2b402eac2688589b8b0b29
+      created: 1759590449588
+      modified: 1763686038197
+      isPrivate: false
+      description: ""
+      sortKey: -1759590449588
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"query
+        {\n\tall_actors{\n\t\tid\n\t\tfirst_name\n\t\tlast_name\n\t\tbirthyear\n\t\tfilms{\n\t  id\n    title\n\t\trating\n\t\tdirector\n\t\t}\n\t}\n}"}'
+    headers:
+      - name: User-Agent
+        value: insomnia/11.6.1
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.baselink }}/graphql"
+    name: GET MOVIE WITH ID
+    meta:
+      id: req_8f4e3691800a4f4b8269d46279fcca5c
+      created: 1759590662046
+      modified: 1763685955374
+      isPrivate: false
+      description: ""
+      sortKey: -1759590325890
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"query{\n\tmovie_with_id(_id:
+        \"39ab85e5-5e8e-4dc5-afea-65dc368bd7ab\"){\n\t\ttitle\n\t\tid\n\t\trating\n\t\tdirector\n\t}\n}"}'
+    headers:
+      - name: User-Agent
+        value: insomnia/11.6.1
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.baselink }}/graphql"
+    name: GET ACTOR WITH ID AND ITS MOVIE LIST
+    meta:
+      id: req_d3b62b7478874cb798519cd69b971f47
+      created: 1759590809214
+      modified: 1763686053536
+      isPrivate: false
+      description: ""
+      sortKey: -1759590809214
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"query{\n\tactor_with_id(_id:
+        \"actor6\"){\n\t\tfirst_name\n\t\tlast_name\n\t\tbirthyear\n\t\tfilms{\n\t\t\ttitle\n\t\t\tid\n\t\t\tdirector\n\t\t\trating\n\t\t}\n\t\tfirst_name\n\t\tlast_name\n\t\tbirthyear\n\t}\n}"}'
+    headers:
+      - name: User-Agent
+        value: insomnia/11.6.1
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.baselink }}/graphql"
+    name: "GESTION D'ERREURS : MOVIE WITH ID"
+    meta:
+      id: req_e776f4e8ff644f209c9e3e4fa24a7041
+      created: 1759591095341
+      modified: 1763686020868
+      isPrivate: false
+      description: ""
+      sortKey: -1759590445722.4375
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"query{\n\tmovie_with_id(_id :
+        \"WSDFGUOVQERIUSDV\"){\n\t  id\n\t\ttitle\n\t\trating\n\t\tdirector\n\t}\n}"}'
+    headers:
+      - name: User-Agent
+        value: insomnia/11.6.1
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.baselink }}/graphql"
+    name: "GESTION D'ERREURS : ACTOR_WITH_ID"
+    meta:
+      id: req_aeef310d7ae64410bf5cd27a55481bd1
+      created: 1759591216803
+      modified: 1763686086593
+      isPrivate: false
+      description: ""
+      sortKey: -1763652213743
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"query{\n\tactor_with_id(_id :
+        \"WSDFGUOVQERIUSDV\"){\n\t\tfirst_name\n\t\tlast_name\n\t\tid\n\t\tfilms{\n\t  id\n\t\ttitle\n\t\trating\n\t\tdirector\n\t\t}\n\t}\n}"}'
+    headers:
+      - name: User-Agent
+        value: insomnia/11.6.1
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.baselink }}/graphql"
+    name: GET MOVIE WITH TITLE
+    meta:
+      id: req_686f3450d1ce42fc88cbe43dee8bfa90
+      created: 1763650162433
+      modified: 1763685965211
+      isPrivate: false
+      description: ""
+      sortKey: -1759590387739
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"query {\n  movie_by_title(title:\"Creed\")
+        {\n    title\n\t\tid\n\t\trating\n    director\n  }\n}\n"}'
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.baselink }}/graphql"
+    name: ADD MOVIE
+    meta:
+      id: req_ce0efd5a7f2b4d99b951fd43a8556b9e
+      created: 1763650620661
+      modified: 1763685977650
+      isPrivate: false
+      description: ""
+      sortKey: -1759590418663.5
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"mutation {\n  add_movie(\n    id:\"m900\",\n    title:\"Fast
+        X\",\n    rating:7.5,\n    director:\"Louis Leterrier\"\n  )
+        {\n    id\n    title\n  }\n}\n"}'
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.baselink }}/graphql"
+    name: UPDATE MOVIE
+    meta:
+      id: req_8e98f39c1f964270a3733675fec46b54
+      created: 1763651950806
+      modified: 1763686003402
+      isPrivate: false
+      description: ""
+      sortKey: -1759590434125.75
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"mutation
+        {\n  update_movie(\n    id:\"m900\",\n    rating:8.1\n  )
+        {\n    title\n    rating\n  }\n}\n"}'
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.baselink }}/graphql"
+    name: DELETE MOVIE
+    meta:
+      id: req_23de490ea00d495db758424a3392b7b5
+      created: 1763651994406
+      modified: 1763687314684
+      isPrivate: false
+      description: ""
+      sortKey: -1759590441856.875
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"mutation {\n  delete_movie(id:\"m900\")\n}\n"}'
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.baselink }}/graphql"
+    name: ADD ACTOR
+    meta:
+      id: req_5a51b0a113e8496d97098dd9f25903fd
+      created: 1763652052934
+      modified: 1763687077107
+      isPrivate: false
+      description: ""
+      sortKey: -1763652052934
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"mutation
+        {\n  add_actor(\n    id:\"a100\",\n    first_name:\"John\",\n    last_name:\"Doe\",\n    birthyear:\"1990\",\n    films:[\"267eedb8-0f5d-42d5-8f43-72426b9fb3e6\"]\n  )
+        {\n    id\n    first_name\n    films { title }\n  }\n}\n"}'
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.baselink }}/graphql"
+    name: UPDATE ACTOR FILM
+    meta:
+      id: req_50b792dd764e4f80ba451004a6143d23
+      created: 1763652127597
+      modified: 1763686073421
+      isPrivate: false
+      description: ""
+      sortKey: -1763652127597
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"mutation
+        {\n  update_actor_films(\n    id:\"a100\",\n    films:[\"276c79ec-a26a-40a6-b3d3-fb242a5947b6\"]\n  )
+        {\n    id\n    films { title }\n  }\n}\n"}'
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.baselink }}/graphql"
+    name: DELETE ACTOR
+    meta:
+      id: req_8f4fbdf8240144c1874478c7f51f5e58
+      created: 1763652213643
+      modified: 1763686079943
+      isPrivate: false
+      description: ""
+      sortKey: -1763652213643
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"mutation {\n  delete_actor(id:\"a100\")\n}\n"}'
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.baselink }}/graphql"
+    name: ADD ACTOR WITH UNKNOWN MOVIES
+    meta:
+      id: req_326e2ac495514d358677873b6c70caa1
+      created: 1763687135317
+      modified: 1763687238169
+      isPrivate: false
+      description: ""
+      sortKey: -1763652213693
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"mutation
+        {\n  add_actor(\n    id:\"a100\",\n    first_name:\"John\",\n    last_name:\"Krasinski\",\n    birthyear:\"1990\",\n    films:[\"269eedb8-ffff-ffff-ffff-72426b9fb3e6\"]\n  )
+        {\n    id\n    first_name\n    films { title }\n  }\n}\n"}'
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.baselink }}/graphql"
+    name: DELETE MOVIE CASCADE
+    meta:
+      id: req_c4a0f5030dcf4aea9fde15dc65da902d
+      created: 1763687376142
+      modified: 1763687628402
+      isPrivate: false
+      description: ""
+      sortKey: -1759590437991.3125
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"mutation
+        {\n  delete_movie(id:\"96798c08-d19b-4986-a05d-7da856efb697\")\n}\n"}'
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.baselink }}/graphql"
+    name: UPDATE ACTOR UNKNOWN FILM
+    meta:
+      id: req_c4fbf43a73a040bba54dbfc076a9bc34
+      created: 1763687683509
+      modified: 1763687735438
+      isPrivate: false
+      description: ""
+      sortKey: -1763652213718
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"mutation
+        {\n  update_actor_films(\n    id:\"actor1\",\n    films:[\"276c79ec-ffff-ffff-ffff-fb242a5947b6\"]\n  )
+        {\n    id\n    films { title }\n  }\n}\n"}'
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_4d54343625454921bbe696a6a93e5dbe
+    created: 1759590108592
+    modified: 1759590108592
+environments:
+  name: Base Environment
+  meta:
+    id: env_6bd86fb8d44d49b1b7e220472e6687ef
+    created: 1759590108587
+    modified: 1763685922421
+    isPrivate: false
+  data:
+    baselink: http://127.0.0.1:3200

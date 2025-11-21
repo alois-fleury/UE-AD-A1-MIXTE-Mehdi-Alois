@@ -1,0 +1,189 @@
+type: collection.insomnia.rest/5.0
+name: "GRAPHQL REQUESTS : BOOKING (1)"
+meta:
+  id: wrk_2aadc4f433cb4fbaaadd6545fc21aedf
+  created: 1763685694665
+  modified: 1763688072527
+  description: ""
+collection:
+  - url: "{{ _.baselink }}/graphql"
+    name: GET ALL BOOKINGS
+    meta:
+      id: req_f31404602a8c4d56abdf268821662451
+      created: 1759596630052
+      modified: 1763686149290
+      isPrivate: false
+      description: ""
+      sortKey: -1759596630052
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"query{\n\tall_bookings{\n\t\tuserid\n\t\tdates{\n\t\t\tdate\n\t\t\tmovies{\n\t\t\t\tid\n\t\t\t\ttitle\n\t\t\t\trating\n\t\t\t\tdirector\n\t\t\t}\t\t\n\t\t}\n\t}\n}"}'
+    headers:
+      - name: User-Agent
+        value: insomnia/11.6.1
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.baselink }}/graphql"
+    name: GET BOOKING WITH ID
+    meta:
+      id: req_85376c7f75404075a380b38249bdba04
+      created: 1759596849376
+      modified: 1763686156843
+      isPrivate: false
+      description: ""
+      sortKey: -1759596849376
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"query{\n\tbooking_with_id(_id:
+        \"garret_heaton\"){\n\t\tuserid\n\t\tdates{\n\t\t\tdate\n\t\t\tmovies{\n\t\t\t\tid\n\t\t\t\ttitle\n\t\t\t\trating\n\t\t\t\tdirector\n\t\t\t}\n\t\t}\n\t}\n}"}'
+    headers:
+      - name: User-Agent
+        value: insomnia/11.6.1
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.baselink }}/graphql"
+    name: ADD BOOKING
+    meta:
+      id: req_4857e5601d754933b7446fc1dcc2c27a
+      created: 1763647158507
+      modified: 1763687950381
+      isPrivate: false
+      description: ""
+      sortKey: -1763647158507
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"mutation {\n  add_booking(userid: \"mehdi\", date:
+        \"20151201\", movies: [\"267eedb8-0f5d-42d5-8f43-72426b9fb3e6\"])
+        {\n    userid\n    dates {\n      date\n      movies
+        {\n        id\n        title\n      }\n    }\n  }\n}\n"}'
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.baselink }}/graphql"
+    name: DELETE BOOKING
+    meta:
+      id: req_ca42d111e393460ea532a983c5609db0
+      created: 1763647383384
+      modified: 1763686181909
+      isPrivate: false
+      description: ""
+      sortKey: -1763647383384
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"mutation {\n  delete_booking(userid: \"mehdi\")\n}\n"}'
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.baselink }}/graphql"
+    name: ADD BOOKING UNKNOWN DATE
+    meta:
+      id: req_d4498e191b114281b25a5b1ce7c656db
+      created: 1763687880356
+      modified: 1763687894415
+      isPrivate: false
+      description: ""
+      sortKey: -1762594971140.25
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"mutation {\n  add_booking(userid: \"mehdi\", date:
+        \"20770101\", movies: [\"267eedb8-0f5d-42d5-8f43-72426b9fb3e6\"])
+        {\n    userid\n    dates {\n      date\n      movies
+        {\n        id\n        title\n      }\n    }\n  }\n}\n"}'
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.baselink }}/graphql"
+    name: ADD BOOKING NOT SCHEDULED MOVIE
+    meta:
+      id: req_c441c0a05d0e4905a8f91a2ce38934fe
+      created: 1763687911380
+      modified: 1763687985611
+      isPrivate: false
+      description: ""
+      sortKey: -1762068877456.875
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"mutation {\n  add_booking(userid: \"mehdi\", date:
+        \"20151201\", movies: [\"267eedb8-ffff-ffff-ffff-72426b9fb3e6\"])
+        {\n    userid\n    dates {\n      date\n      movies
+        {\n        id\n        title\n      }\n    }\n  }\n}\n"}'
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_4e8f9c1d3aae4420b8954b68aecf4271
+    created: 1759596606292
+    modified: 1759596606292
+environments:
+  name: Base Environment
+  meta:
+    id: env_84e84515302b4a1598e2f628e9c1c68a
+    created: 1759596606288
+    modified: 1763686140463
+    isPrivate: false
+  data:
+    baselink: 127.0.0.1:3201
