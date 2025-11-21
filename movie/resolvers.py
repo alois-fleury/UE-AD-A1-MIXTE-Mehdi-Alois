@@ -114,7 +114,7 @@ def resolve_add_actor(_, info, id, first_name, last_name, birthyear, films):
         "films": [m for m in movies_data if m["id"] in films]
     }
 
-# UPDATE UN ACTOR 
+# UPDATE UN ACTOR
 def resolve_update_actor_films(_, info, id, films):
     existing_movie_ids = [movie["id"] for movie in movies_data]
     for film in films:

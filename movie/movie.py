@@ -11,24 +11,24 @@ HOST = '0.0.0.0'
 # Charger le schema GraphQL
 type_defs = load_schema_from_path("movie.graphql")
 
-# Déf du Query et de la mutation 
+# Déf du Query et de la mutation
 query = QueryType()
 mutation = MutationType()
 
-# Lier les queries aux résolveurs 
+# Lier les queries aux résolveurs
 
 # Pour les movies
 query.set_field("all_movies", r.resolve_all_movies)
 query.set_field("movie_with_id", r.resolve_movie_with_id)
 query.set_field("movie_by_title", r.resolve_get_movie_by_title)
 
-# Pour les actors 
+# Pour les actors
 query.set_field("all_actors", r.resolve_all_actors)
 query.set_field("actor_with_id", r.resolve_actor_with_id)
 
-# Lier les mutations aux résolveurs 
+# Lier les mutations aux résolveurs
 
-# Pour les movies 
+# Pour les movies
 mutation.set_field("add_movie", r.resolve_add_movie)
 mutation.set_field("update_movie", r.resolve_update_movie)
 mutation.set_field("delete_movie", r.resolve_delete_movie)

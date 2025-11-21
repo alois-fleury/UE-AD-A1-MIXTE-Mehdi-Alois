@@ -19,7 +19,7 @@ def resolve_all_bookings(_, info):
 
     for booking in booking_data:
         if booking.get("userid") and booking.get("dates"):
-            
+
             new_dates = []
             for d in booking["dates"]:
                 new_dates.append({
@@ -36,7 +36,7 @@ def resolve_all_bookings(_, info):
 
 # RECUP LA RESERVATION AVEC L'ID
 def resolve_booking_with_id(_, info, _id):
-    for booking in booking_data:    
+    for booking in booking_data:
         if booking["userid"] == _id:
             new_dates = []
             for d in booking["dates"]:
@@ -83,7 +83,7 @@ def resolve_add_booking(_, info, userid, date, movies):
         ]
     }
     booking_data.append(new_booking)
-    
+
     # ON RECUP LA RESERVATION AJOUTEE
     return resolve_booking_with_id(_, info, userid)
 
