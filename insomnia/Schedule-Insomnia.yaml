@@ -53,7 +53,7 @@ collection:
     meta:
       id: greq_0ce8c6cb56294907b6d6b700f2dce3b5
       created: 1763677615978
-      modified: 1763677666241
+      modified: 1763689042757
       isPrivate: false
       sortKey: -1763677379834
       description: ""
@@ -91,6 +91,31 @@ collection:
       url: https://buf.build
       apiKey: ""
       module: buf.build/connectrpc/eliza
+  - url: "{{ _.baselink }}"
+    name: Add schedule day unexisting film
+    meta:
+      id: greq_2f1aa822b7e245639f14d6c96186b6e2
+      created: 1763690129859
+      modified: 1763690194516
+      isPrivate: false
+      sortKey: -1763677379784
+      description: ""
+    body:
+      text: |-
+        {
+        	"movies": [
+        		"720d006c-3a57-4b6a-b18f-9b713b073f3c",
+        		"39ab85e5-ffff-ffff-ffff-65dc368bd7ab"
+        	],
+        	"date": "20260219"
+        }
+    protoFileId: pf_a9d93384772b4c6cabd1d19a71552ab0
+    protoMethodName: /Schedule/AddScheduleDay
+    reflectionApi:
+      enabled: false
+      url: https://buf.build
+      apiKey: ""
+      module: buf.build/connectrpc/eliza
 cookieJar:
   name: Default Jar
   meta:
@@ -102,7 +127,7 @@ environments:
   meta:
     id: env_c7902645b7cc5a40319c7a26abf56b0594b4525c
     created: 1763645356577
-    modified: 1763677491535
+    modified: 1763689210082
     isPrivate: false
   data:
     baselink: http://127.0.0.1:3002
