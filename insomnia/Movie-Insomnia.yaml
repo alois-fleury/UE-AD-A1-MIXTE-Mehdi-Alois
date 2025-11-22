@@ -1,4 +1,5 @@
 type: collection.insomnia.rest/5.0
+schema_version: "5.1"
 name: "GRAPHQL REQUESTS : MOVIE (1)"
 meta:
   id: wrk_35c3fcd4dbef44e6a7344f907215326c
@@ -37,7 +38,7 @@ collection:
     meta:
       id: req_2e7058b6df4e49cd994fb52d17d31a1d
       created: 1759590202192
-      modified: 1763685945112
+      modified: 1763734919093
       isPrivate: false
       description: ""
       sortKey: -1759590202192
@@ -64,10 +65,10 @@ collection:
     meta:
       id: req_255f9db3dd2b402eac2688589b8b0b29
       created: 1759590449588
-      modified: 1763686038197
+      modified: 1763697025047
       isPrivate: false
       description: ""
-      sortKey: -1759590449588
+      sortKey: -1759590447172.0234
     method: POST
     body:
       mimeType: application/graphql
@@ -91,7 +92,7 @@ collection:
     meta:
       id: req_8f4e3691800a4f4b8269d46279fcca5c
       created: 1759590662046
-      modified: 1763685955374
+      modified: 1763838418212
       isPrivate: false
       description: ""
       sortKey: -1759590325890
@@ -118,10 +119,10 @@ collection:
     meta:
       id: req_d3b62b7478874cb798519cd69b971f47
       created: 1759590809214
-      modified: 1763686053536
+      modified: 1763696922991
       isPrivate: false
       description: ""
-      sortKey: -1759590809214
+      sortKey: -1759590539494.5
     method: POST
     body:
       mimeType: application/graphql
@@ -145,7 +146,7 @@ collection:
     meta:
       id: req_e776f4e8ff644f209c9e3e4fa24a7041
       created: 1759591095341
-      modified: 1763686020868
+      modified: 1763734967654
       isPrivate: false
       description: ""
       sortKey: -1759590445722.4375
@@ -172,7 +173,7 @@ collection:
     meta:
       id: req_aeef310d7ae64410bf5cd27a55481bd1
       created: 1759591216803
-      modified: 1763686086593
+      modified: 1763739929701
       isPrivate: false
       description: ""
       sortKey: -1763652213743
@@ -226,7 +227,7 @@ collection:
     meta:
       id: req_ce0efd5a7f2b4d99b951fd43a8556b9e
       created: 1763650620661
-      modified: 1763694719557
+      modified: 1763739816568
       isPrivate: false
       description: ""
       sortKey: -1759590418663.5
@@ -237,8 +238,7 @@ collection:
         X\",\n    rating:7.5,\n    director:\"Louis Leterrier\"\n  )
         {\n    id\n    title\n  }\n}\n"}'
     parameters:
-      - id: pair_63d9d02c733948d3907b6ad0aed940a8
-        name: uid
+      - name: uid
         value: michael_scott
         description: ""
         disabled: false
@@ -260,7 +260,7 @@ collection:
     meta:
       id: req_8e98f39c1f964270a3733675fec46b54
       created: 1763651950806
-      modified: 1763694763028
+      modified: 1763739799365
       isPrivate: false
       description: ""
       sortKey: -1759590434125.75
@@ -271,8 +271,7 @@ collection:
         {\n  update_movie(\n    id:\"m900\",\n    rating:8.1\n  )
         {\n    title\n    rating\n  }\n}\n"}'
     parameters:
-      - id: pair_68b139b9686e43258dfdde2c9eed7327
-        name: uid
+      - name: uid
         value: michael_scott
         description: ""
         disabled: false
@@ -303,8 +302,7 @@ collection:
       mimeType: application/graphql
       text: '{"query":"mutation {\n  delete_movie(id:\"m900\")\n}\n"}'
     parameters:
-      - id: pair_a5a8b42337ef42e394b42c49b7e4387c
-        name: uid
+      - name: uid
         value: michael_scott
         description: ""
         disabled: false
@@ -326,7 +324,7 @@ collection:
     meta:
       id: req_5a51b0a113e8496d97098dd9f25903fd
       created: 1763652052934
-      modified: 1763694817321
+      modified: 1763739867652
       isPrivate: false
       description: ""
       sortKey: -1763652052934
@@ -337,8 +335,7 @@ collection:
         {\n  add_actor(\n    id:\"a100\",\n    first_name:\"John\",\n    last_name:\"Doe\",\n    birthyear:\"1990\",\n    films:[\"267eedb8-0f5d-42d5-8f43-72426b9fb3e6\"]\n  )
         {\n    id\n    first_name\n    films { title }\n  }\n}\n"}'
     parameters:
-      - id: pair_d80ec97647344ecbbec157603bc74aea
-        name: uid
+      - name: uid
         value: michael_scott
         description: ""
         disabled: false
@@ -360,7 +357,7 @@ collection:
     meta:
       id: req_50b792dd764e4f80ba451004a6143d23
       created: 1763652127597
-      modified: 1763694821336
+      modified: 1763739875115
       isPrivate: false
       description: ""
       sortKey: -1763652127597
@@ -371,8 +368,7 @@ collection:
         {\n  update_actor_films(\n    id:\"a100\",\n    films:[\"276c79ec-a26a-40a6-b3d3-fb242a5947b6\"]\n  )
         {\n    id\n    films { title }\n  }\n}\n"}'
     parameters:
-      - id: pair_5c28e2b7ce854926a9ce5aa67158cdca
-        name: uid
+      - name: uid
         value: michael_scott
         description: ""
         disabled: false
@@ -403,8 +399,7 @@ collection:
       mimeType: application/graphql
       text: '{"query":"mutation {\n  delete_actor(id:\"a100\")\n}\n"}'
     parameters:
-      - id: pair_06b59829a2d84491bd7c41730a2439a0
-        name: uid
+      - name: uid
         value: michael_scott
         description: ""
         disabled: false
@@ -426,7 +421,7 @@ collection:
     meta:
       id: req_326e2ac495514d358677873b6c70caa1
       created: 1763687135317
-      modified: 1763694828213
+      modified: 1763739914501
       isPrivate: false
       description: ""
       sortKey: -1763652213693
@@ -437,8 +432,7 @@ collection:
         {\n  add_actor(\n    id:\"a100\",\n    first_name:\"John\",\n    last_name:\"Krasinski\",\n    birthyear:\"1990\",\n    films:[\"269eedb8-ffff-ffff-ffff-72426b9fb3e6\"]\n  )
         {\n    id\n    first_name\n    films { title }\n  }\n}\n"}'
     parameters:
-      - id: pair_9d83f9a9b13949e285b43c06a8158ae5
-        name: uid
+      - name: uid
         value: michael_scott
         description: ""
         disabled: false
@@ -460,18 +454,17 @@ collection:
     meta:
       id: req_c4a0f5030dcf4aea9fde15dc65da902d
       created: 1763687376142
-      modified: 1763694799043
+      modified: 1763697018836
       isPrivate: false
       description: ""
-      sortKey: -1759590437991.3125
+      sortKey: -1759590448621.6094
     method: POST
     body:
       mimeType: application/graphql
       text: '{"query":"mutation
         {\n  delete_movie(id:\"96798c08-d19b-4986-a05d-7da856efb697\")\n}\n"}'
     parameters:
-      - id: pair_c7012653b3f6443da839e34a5fc590eb
-        name: uid
+      - name: uid
         value: michael_scott
         description: ""
         disabled: false
@@ -493,7 +486,7 @@ collection:
     meta:
       id: req_c4fbf43a73a040bba54dbfc076a9bc34
       created: 1763687683509
-      modified: 1763694831314
+      modified: 1763739920320
       isPrivate: false
       description: ""
       sortKey: -1763652213718
@@ -504,14 +497,40 @@ collection:
         {\n  update_actor_films(\n    id:\"actor1\",\n    films:[\"276c79ec-ffff-ffff-ffff-fb242a5947b6\"]\n  )
         {\n    id\n    films { title }\n  }\n}\n"}'
     parameters:
-      - id: pair_4608d271335d4cb0a77faea9be81492d
-        name: uid
+      - name: uid
         value: michael_scott
         description: ""
         disabled: false
     headers:
       - name: User-Agent
         value: insomnia/12.0.0
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.baselink }}/graphql"
+    name: GET ALL ACTORS WITH MOVIES LIST UPDATED
+    meta:
+      id: req_fb7564cb07a84c60969f48b7fe47432f
+      created: 1763697016190
+      modified: 1763697020248
+      isPrivate: false
+      description: ""
+      sortKey: -1759590494541.25
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"query
+        {\n\tall_actors{\n\t\tid\n\t\tfirst_name\n\t\tlast_name\n\t\tbirthyear\n\t\tfilms{\n\t  id\n    title\n\t\trating\n\t\tdirector\n\t\t}\n\t}\n}"}'
+    headers:
+      - name: User-Agent
+        value: insomnia/11.6.1
       - name: Content-Type
         value: application/json
     settings:

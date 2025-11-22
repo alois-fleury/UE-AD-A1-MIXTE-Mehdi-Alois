@@ -1,4 +1,5 @@
 type: collection.insomnia.rest/5.0
+schema_version: "5.1"
 name: MIXTE-Schedule-gRPC
 meta:
   id: wrk_0e7f20094bab48d5b2c928d1934135ab
@@ -11,18 +12,12 @@ collection:
     meta:
       id: greq_d6ef142c57054e75b6e44271d4199fcd
       created: 1763677380034
-      modified: 1763677479231
+      modified: 1763700857775
       isPrivate: false
-      sortKey: -1763677380034
       description: ""
+      sortKey: -1763677380034
     body:
       text: "{}"
-    metadata:
-      - id: pair_e0b663e72760474884262c9cc32581ab
-        name: ""
-        value: ""
-        description: ""
-        disabled: false
     protoFileId: pf_a9d93384772b4c6cabd1d19a71552ab0
     protoMethodName: /Schedule/GetAllScheduleDays
     reflectionApi:
@@ -37,8 +32,8 @@ collection:
       created: 1763677563311
       modified: 1763677612605
       isPrivate: false
-      sortKey: -1763677379934
       description: ""
+      sortKey: -1763677379934
     body:
       text: '{"date": "20151130"}'
     protoFileId: pf_a9d93384772b4c6cabd1d19a71552ab0
@@ -53,10 +48,10 @@ collection:
     meta:
       id: greq_0ce8c6cb56294907b6d6b700f2dce3b5
       created: 1763677615978
-      modified: 1763695095816
+      modified: 1763700879804
       isPrivate: false
-      sortKey: -1763677379834
       description: ""
+      sortKey: -1763677379834
     body:
       text: |-
         {
@@ -67,8 +62,7 @@ collection:
         	"date": "20250118"
         }
     metadata:
-      - id: pair_9d846c926cfd4bf3b9ddf23ec300049f
-        name: uid
+      - name: uid
         value: michael_scott
         description: ""
         disabled: false
@@ -86,13 +80,12 @@ collection:
       created: 1763677676652
       modified: 1763695151380
       isPrivate: false
-      sortKey: -1763677379734
       description: ""
+      sortKey: -1763677379734
     body:
       text: '{"date": "20250118"}'
     metadata:
-      - id: pair_f4dc1c97a7a54b7d9652170a615b29be
-        name: uid
+      - name: uid
         value: michael_scott
         description: ""
         disabled: false
@@ -110,8 +103,8 @@ collection:
       created: 1763690129859
       modified: 1763695105942
       isPrivate: false
-      sortKey: -1763677379784
       description: ""
+      sortKey: -1763677379784
     body:
       text: |-
         {
@@ -122,8 +115,7 @@ collection:
         	"date": "20260219"
         }
     metadata:
-      - id: pair_d18400f67c33456eb9f1acbfcf28da77
-        name: uid
+      - name: uid
         value: michael_scott
         description: ""
         disabled: false
@@ -141,13 +133,12 @@ collection:
       created: 1763695158696
       modified: 1763695196761
       isPrivate: false
-      sortKey: -1763677379634
       description: ""
+      sortKey: -1763677379634
     body:
       text: '{"date": "20250118"}'
     metadata:
-      - id: pair_e41c7c7a805f4e9daf397cef75818c67
-        name: uid
+      - name: uid
         value: jim_halpert
         description: ""
         disabled: false
@@ -169,7 +160,7 @@ environments:
   meta:
     id: env_c7902645b7cc5a40319c7a26abf56b0594b4525c
     created: 1763645356577
-    modified: 1763689210082
+    modified: 1763700589893
     isPrivate: false
   data:
-    baselink: http://127.0.0.1:3002
+    baselink: localhost:3202

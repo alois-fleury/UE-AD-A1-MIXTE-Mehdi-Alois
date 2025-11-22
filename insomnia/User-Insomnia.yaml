@@ -1,0 +1,333 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: TP1-User-Import
+meta:
+  id: wrk_df521ebf732c4dab8a7a6009f247ef0c
+  created: 1763584144958
+  modified: 1763584153661
+  description: ""
+collection:
+  - url: "{{ _.baselink }}/users"
+    name: Obtenir tous les utilisateurs
+    meta:
+      id: req_450caa9e792246c9afc11c2b58eb2335
+      created: 1763488717971
+      modified: 1763488802606
+      isPrivate: false
+      description: ""
+      sortKey: -1761542783773.5
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.baselink }}/users/:id"
+    name: Obtenir un utilisateur par id (jim_halpert) 200
+    meta:
+      id: req_a3f0b18e4ea9493ebce50134b05ba97f
+      created: 1763488796251
+      modified: 1763730079207
+      isPrivate: false
+      description: ""
+      sortKey: -1761542783673.5
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+    pathParameters:
+      - name: id
+        value: jim_halpert
+  - url: "{{ _.baselink }}/users/:id"
+    name: Ajouter un utilisateur pas admin (bob_vance) 200
+    meta:
+      id: req_61aa2f4c1722437fb4b35c454d090bf8
+      created: 1763488920122
+      modified: 1763489009120
+      isPrivate: false
+      description: ""
+      sortKey: -1760569816524.75
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+                 "id":"bob_vance",
+                 "name":"Bob Vance",
+                 "last_active":1360031202,
+                 "admin":false
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.0.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+    pathParameters:
+      - name: id
+        value: bob_vance
+  - url: "{{ _.baselink }}/users/:id"
+    name: Obtenir utilisateur par id (bob_vance) 200
+    meta:
+      id: req_7c893d0a899f44c1a8e7bb4e1b076c0e
+      created: 1763489053345
+      modified: 1763489059869
+      isPrivate: false
+      description: ""
+      sortKey: -1760569816424.75
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+    pathParameters:
+      - name: id
+        value: bob_vance
+  - url: "{{ _.baselink }}/users/:id"
+    name: Ajouter un utilisateur admin (david_wallace) 200
+    meta:
+      id: req_366497492eec40cc8af227ea9dd9dcab
+      created: 1763489094535
+      modified: 1763497060589
+      isPrivate: false
+      description: ""
+      sortKey: -1760569816324.75
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+                 "id":"david_wallace",
+                 "name":"David Wallace",
+                 "last_active":1360031202,
+                 "admin":true
+        }
+    parameters:
+      - name: uid
+        value: michael_scott
+        disabled: false
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.0.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+    pathParameters:
+      - name: id
+        value: david_wallace
+  - url: "{{ _.baselink }}/users/:id"
+    name: Obtenir utilisateur par id (david_wallace) 200
+    meta:
+      id: req_040960054a4a4e1fbfa3c090bc3b8dca
+      created: 1763489235285
+      modified: 1763489240485
+      isPrivate: false
+      description: ""
+      sortKey: -1760569816224.75
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+    pathParameters:
+      - name: id
+        value: david_wallace
+  - url: "{{ _.baselink }}/users/:id/:lastactive"
+    name: Modifier un utilisateur (david_wallace) 200
+    meta:
+      id: req_506c3641f01040cba904bf26d2fed563
+      created: 1763489262368
+      modified: 1763497056272
+      isPrivate: false
+      description: ""
+      sortKey: -1760569816024.75
+    method: PUT
+    parameters:
+      - name: uid
+        value: david_wallace
+        disabled: false
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+    pathParameters:
+      - name: id
+        value: david_wallace
+      - name: lastactive
+        value: "1360031225"
+  - url: "{{ _.baselink }}/users/:id"
+    name: Supprimer un utilisateur admin (david_wallace) 200
+    meta:
+      id: req_72069d141c664db4943d697f75ea09e7
+      created: 1763489628011
+      modified: 1763497050409
+      isPrivate: false
+      description: ""
+      sortKey: -1760083332700.375
+    method: DELETE
+    parameters:
+      - name: uid
+        value: michael_scott
+        disabled: false
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+    pathParameters:
+      - name: id
+        value: david_wallace
+  - url: "{{ _.baselink }}/users/isadmin/:id"
+    name: Savoir si un utilisateur est admin (jim_halpert) 200
+    meta:
+      id: req_4c44af6975a049828bbb99e7ee9aff12
+      created: 1763489726264
+      modified: 1763497047282
+      isPrivate: false
+      description: ""
+      sortKey: -1760083332600.375
+    method: GET
+    parameters:
+      - name: uid
+        value: jim_halpert
+        disabled: false
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+    pathParameters:
+      - name: id
+        value: jim_halpert
+  - url: "{{ _.baselink }}/users/isadmin/:id"
+    name: Savoir si un utilisateur est admin (michael_scott) 200
+    meta:
+      id: req_afaa02e2a093470ab3dab6f0671da2b2
+      created: 1763489767378
+      modified: 1763497043480
+      isPrivate: false
+      description: ""
+      sortKey: -1759840090988.1875
+    method: GET
+    parameters:
+      - name: uid
+        value: michael_scott
+        disabled: false
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+    pathParameters:
+      - name: id
+        value: michael_scott
+  - url: "{{ _.baselink }}/users/:id"
+    name: Supprimer un utilisateur pas admin (bob_vance) 200
+    meta:
+      id: req_c7426909b82a47c6b493891b6c9af3f5
+      created: 1763496917728
+      modified: 1763497053514
+      isPrivate: false
+      description: ""
+      sortKey: -1760326574362.5625
+    method: DELETE
+    parameters:
+      - name: uid
+        value: bob_vance
+        disabled: false
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+    pathParameters:
+      - name: id
+        value: bob_vance
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_50b2b80f50d44d8c88ed5df565f2044b
+    created: 1758548039480
+    modified: 1758548039480
+environments:
+  name: Base Environment
+  meta:
+    id: env_b520784440934e0bbd0ad52d9e7dc684
+    created: 1758548039477
+    modified: 1763488642221
+    isPrivate: false
+  data:
+    baselink: http://127.0.0.1:3203
