@@ -4,6 +4,7 @@ from graphql import GraphQLError
 from grpcScheduleClient import get_schedule_by_date
 import os
 import sys
+import requests
 from dotenv import load_dotenv
 
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -13,13 +14,26 @@ if parent_dir not in sys.path:
 from checkAdmin import checkAdmin
 load_dotenv()
 
-# CREATION DU CHEMIN
-BASE_DIR = os.path.join(os.path.dirname(__file__), "data")
+MOVIE_SERVICE_URL=os.getenv("MOVIE_SERVICE_URL") + "/graphql"
 
 from db import load_booking, write
 
-with open(os.path.join(BASE_DIR, "movies.json"), encoding="utf-8") as f:
-    movies_data = json.load(f)["movies"]
+def fetch_movie_from_movies_service(movie_id):
+    query = """
+    query($id: String!) {
+        movie_with_id(_id: $id) {
+            id
+            title
+            rating
+            director
+        }
+    }
+    """
+    payload = {"query": query, "variables": {"id": movie_id}}
+
+    response = requests.post(MOVIE_SERVICE_URL, json=payload)
+    data = response.json()
+    return data["data"]["movie_with_id"]
 
 # RECUP TOUTES LES RESERVATIONS
 def resolve_all_bookings(_, info):
@@ -31,9 +45,15 @@ def resolve_all_bookings(_, info):
 
             new_dates = []
             for d in booking["dates"]:
+                movies_details = []
+
+                for movie_id in d.get("movies", []):
+                    movie = fetch_movie_from_movies_service(movie_id)
+                    movies_details.append(movie)
+
                 new_dates.append({
                     "date": d["date"],
-                    "movies": [m for m in movies_data if m["id"] in d.get("movies", [])]
+                    "movies": movies_details
                 })
 
             booking_list.append({
@@ -50,9 +70,14 @@ def resolve_booking_with_id(_, info, _id):
         if booking["userid"] == _id:
             new_dates = []
             for d in booking["dates"]:
+                movies_details = []
+                for movie_id in d.get("movies", []):
+                    movie = fetch_movie_from_movies_service(movie_id)
+                    movies_details.append(movie)
+
                 new_dates.append({
                     "date": d["date"],
-                    "movies": [m for m in movies_data if m["id"] in d.get("movies", [])]
+                    "movies": movies_details
                 })
             return {
                 "userid": _id,

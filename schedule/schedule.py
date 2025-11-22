@@ -29,9 +29,6 @@ BOOKING_SERVICE_URL=os.getenv("BOOKING_SERVICE_URL") + "/graphql"
 
 PORT = 3202
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__)) 
-DB_PATH = os.path.join(BASE_DIR, "data", "times.json")
-
 from db import get_schedule_db
 
 class ScheduleServicer(schedule_pb2_grpc.ScheduleServicer):

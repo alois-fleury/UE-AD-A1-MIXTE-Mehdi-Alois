@@ -12,9 +12,6 @@ if parent_dir not in sys.path:
 from checkAdmin import checkAdmin
 load_dotenv()
 
-# CREATION DU CHEMIN
-BASE_DIR = os.path.join(os.path.dirname(__file__), "data")
-
 from db import load_movies, load_actors, write_movies, write_actors
 
 # RECUP TOUT LES FILMS
